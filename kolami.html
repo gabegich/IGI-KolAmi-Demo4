@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kol Ami Fund | Investment Group Israel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAF8;
+            --color-text: #1A1A1A;
+            --color-text-light: #6B6B6B;
+            --color-accent: #2C3E50;
+            --color-border: #E8E6E1;
+            --color-card-bg: #FFFFFF;
+            --color-highlight: #F0EDE8;
+            --color-gold: #B8973A;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ═══════ NAVIGATION ═══════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: box-shadow 0.4s ease;
+        }
+
+        nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .nav-logo {
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-brand-active {
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 2px;
+        }
+
+        .nav-brand-sep {
+            color: var(--color-border);
+            margin: 0 0.5rem;
+            font-weight: 300;
+        }
+
+        .nav-brand-inactive {
+            color: var(--color-text-light);
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand-inactive:hover {
+            color: var(--color-text);
+            border-bottom-color: var(--color-border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--color-text); }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--color-text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-social {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: 1rem;
+        }
+
+        .nav-social-icon {
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-social-icon:hover { color: var(--color-gold); }
+
+        /* ═══════ HERO IMAGE (PARALLAX) ═══════ */
+        .hero-feature {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('kolami-hero.png') center center no-repeat;
+            background-size: cover;
+        }
+
+        .hero-feature::after {
+            display: none;
+        }
+
+        /* ═══════ HERO ═══════ */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-glass {
+            background: rgba(250, 250, 248, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-glass { padding: 2rem 1.5rem; }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 1px; height: 80px;
+            background: linear-gradient(to bottom, var(--color-border), transparent);
+        }
+
+        .hero-overline {
+            font-size: 0.83rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.2s forwards;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero h1 {
+            display: none;
+        }
+
+        .hero h1 em { font-style: italic; font-weight: 400; }
+
+        /* Earnings beat heading */
+        .earnings-heading {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8.5vw, 6rem);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 16px rgba(255,255,255,0.4);
+            position: relative;
+        }
+
+        .earn-static {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.4s forwards;
+        }
+
+        .earn-beat {
+            display: inline-block;
+            position: relative;
+            font-style: italic;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(100px) scale(0.8);
+        }
+
+        .earn-beat.slam {
+            animation: earnings-slam 0.4s cubic-bezier(0.17, 0.67, 0.35, 1.3) forwards;
+        }
+
+        .earn-beat.slam::after {
+            content: '';
+            position: absolute;
+            inset: -15px -25px;
+            background: radial-gradient(ellipse, rgba(45,143,78,0.35) 0%, transparent 70%);
+            border-radius: 8px;
+            animation: green-flash 0.6s ease forwards;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Green flash number that pops up */
+        .earn-pct {
+            position: absolute;
+            top: -0.6em;
+            right: -2.2em;
+            font-family: var(--font-body);
+            font-size: 0.3em;
+            font-style: normal;
+            font-weight: 600;
+            color: #2D8F4E;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .earn-beat.slam .earn-pct {
+            animation: pct-pop 0.4s ease 0.3s forwards, pct-fade 0.5s ease 1.2s forwards;
+        }
+
+        /* Color states */
+        .earn-beat {
+            color: #2D8F4E;
+        }
+
+        .earn-beat.settled {
+            color: #2C3E50;
+            transition: color 0.5s ease;
+        }
+
+        .earn-beat.settled::after {
+            display: none;
+        }
+
+        /* Shake the whole heading on impact */
+        .earnings-heading.shake {
+            animation: earnings-shake 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes earnings-slam {
+            0%   { opacity: 0; transform: translateY(100px) scale(0.8); }
+            60%  { opacity: 1; transform: translateY(-8px) scale(1.05); }
+            80%  { transform: translateY(3px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes green-flash {
+            0%   { opacity: 0; transform: scale(0.5); }
+            30%  { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.8); }
+        }
+
+        @keyframes earnings-shake {
+            0%, 100% { transform: translateX(0); }
+            15%  { transform: translateX(-4px) rotate(-0.5deg); }
+            30%  { transform: translateX(4px) rotate(0.5deg); }
+            45%  { transform: translateX(-3px); }
+            60%  { transform: translateX(2px); }
+            75%  { transform: translateX(-1px); }
+        }
+
+        @keyframes pct-pop {
+            0%   { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pct-fade {
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Tagline */
+        .hero-sub {
+            font-size: 1.13rem;
+            color: #4A4A4A;
+            max-width: 520px;
+            font-weight: 600;
+            line-height: 1.8;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.8s ease;
+        }
+
+        .hero-sub.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* All content after hero scrolls above the fixed bg */
+        .hero ~ section,
+        .hero ~ footer {
+            position: relative;
+            z-index: 1;
+            background: var(--color-bg);
+        }
+
+        .hero ~ section:first-of-type {
+            box-shadow: 0 -30px 30px -10px var(--color-bg);
+        }
+
+        /* ═══════ SECTIONS ═══════ */
+        section { padding: 6rem 2rem; }
+
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.25;
+            margin-bottom: 2rem;
+        }
+
+        .section-divider {
+            width: 40px; height: 1px;
+            background: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* ═══════ ABOUT ═══════ */
+        #about {
+            background: var(--color-card-bg);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .about-text {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            max-width: 720px;
+        }
+
+        /* ═══════ GOVERNANCE ═══════ */
+        .governance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .governance-card {
+            padding: 1.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-bg);
+            transition: all 0.4s ease;
+        }
+
+        .governance-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .governance-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .governance-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .governance-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .governance-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ═══════ PERFORMANCE ═══════ */
+        #performance {
+            background: #0F1B2D;
+            border-top: 1px solid rgba(184,151,58,0.2);
+            border-bottom: 1px solid rgba(184,151,58,0.2);
+        }
+
+        #performance .section-label {
+            color: var(--color-gold);
+            opacity: 0.7;
+        }
+
+        #performance .section-title {
+            color: #FFFFFF;
+        }
+
+        #performance .section-divider {
+            background: var(--color-gold);
+            opacity: 0.4;
+        }
+
+        .performance-hero {
+            margin: 3rem 0 0;
+        }
+
+        .perf-disclaimer {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            text-align: left;
+            margin-top: -0.3rem;
+            font-style: italic;
+        }
+
+        .perf-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 2px 2px 0 0;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .perf-vs-item {
+            text-align: center;
+        }
+
+        .perf-vs-value {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            color: #4ADE80;
+        }
+
+        .perf-vs-value .unit {
+            font-size: 0.5em;
+            color: inherit;
+            opacity: 0.7;
+        }
+
+        .perf-vs-value.benchmark {
+            color: rgba(255,255,255,0.45);
+        }
+
+        .perf-vs-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .perf-vs-divider {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.25);
+        }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            margin: 2rem 0 3rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 2px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #0F1B2D;
+            transition: all 0.4s ease;
+        }
+
+        .metric:hover {
+            background: rgba(255,255,255,0.04);
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF;
+        }
+
+        .metric-value .unit {
+            font-size: 1.5rem;
+            color: var(--color-gold);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .performance-note {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.82rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .report-inline {
+            margin-top: 2rem;
+        }
+
+        .report-inline-btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--color-gold);
+            border-radius: 2px;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .report-inline-btn:hover {
+            background: var(--color-gold);
+            color: #0F1B2D;
+        }
+
+        /* ═══════ ANIMATED CHART ═══════ */
+        .perf-chart-wrap {
+            margin: 0 0 2rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-top: none;
+            border-radius: 0 0 2px 2px;
+            background: rgba(255,255,255,0.02);
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .perf-chart {
+            width: 100%;
+            display: block;
+        }
+
+        .chart-line {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .chart-line.animated {
+            animation: draw-line 4s ease-in-out forwards;
+        }
+
+        .chart-fill {
+            opacity: 0;
+        }
+
+        .chart-fill.animated {
+            animation: fade-fill 1.5s ease 3.5s forwards;
+        }
+
+        .chart-label, .chart-dot {
+            opacity: 0;
+        }
+
+        .chart-label.animated, .chart-dot.animated {
+            animation: fade-in 0.5s ease 4s forwards;
+        }
+
+        @keyframes draw-line {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fade-fill {
+            to { opacity: 1; }
+        }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+
+        .perf-chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .legend-line {
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+        }
+
+        .legend-line.fund { background: #D4AF37; }
+        .legend-line.spy { background: rgba(255,255,255,0.35); }
+
+        .holdings-wrap, .transactions-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ═══════ HOLDINGS ═══════ */
+        #holdings {
+            background: var(--color-card-bg);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .holdings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .holdings-table thead th {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            font-weight: 400;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .holdings-table thead th:last-child { text-align: right; }
+
+        .holdings-table tbody td {
+            padding: 1.15rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.95rem;
+        }
+
+        .holdings-table tbody td:last-child {
+            text-align: right;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .holdings-table tbody tr { transition: background 0.3s ease; }
+        .holdings-table tbody tr:hover { background: var(--color-highlight); }
+
+        .holdings-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .holdings-download:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+        }
+
+        /* ═══════ TRANSACTIONS ═══════ */
+        .transactions-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .transactions-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .transactions-table {
+            margin-top: 1.5rem !important;
+        }
+
+        .tx-date {
+            color: var(--color-text-light);
+            font-size: 0.85rem;
+        }
+
+        .tx-buy, .tx-sell, .tx-trim {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 2px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .tx-buy {
+            background: #E8F5E9;
+            color: #2D8F4E;
+        }
+
+        .tx-sell {
+            background: #FDEDEB;
+            color: #C0392B;
+        }
+
+        .tx-trim {
+            background: #FFF8E1;
+            color: #B8973A;
+        }
+
+        .return-positive { color: #2D8F4E; }
+        .return-negative { color: #C0392B; }
+        .ticker { font-size: 0.73rem; color: var(--color-text-light); letter-spacing: 0.05em; }
+
+        /* ═══════ EVENT PHOTO ═══════ */
+        .event-img-wrap {
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .event-img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-img-caption {
+            padding: 1rem 1.5rem;
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+            background: var(--color-card-bg);
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════ ANALYSIS ═══════ */
+        #analysis {
+            background: #0F1B2D !important;
+        }
+
+        #analysis .section-label {
+            color: var(--color-gold);
+            opacity: 0.7;
+        }
+
+        #analysis .section-title {
+            color: #FFFFFF;
+        }
+
+        #analysis .section-divider {
+            background: var(--color-gold);
+            opacity: 0.4;
+        }
+
+        .analysis-intro {
+            color: rgba(255,255,255,0.55);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 680px;
+            margin-bottom: 2.5rem;
+        }
+
+        .analysis-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .analysis-card {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 2.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-card-bg);
+            transition: all 0.4s ease;
+        }
+
+        .analysis-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+        }
+
+        .analysis-ticker {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            min-width: 70px;
+            padding-top: 0.15rem;
+        }
+
+        .analysis-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+        }
+
+        .analysis-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .analysis-body p {
+            color: var(--color-text-light);
+            font-size: 0.92rem;
+            line-height: 1.75;
+            margin-bottom: 0.75rem;
+        }
+
+        .analysis-link {
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .analysis-link:hover { color: var(--color-text); }
+
+        @media (max-width: 768px) {
+            .analysis-card { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+            .analysis-ticker { min-width: auto; }
+        }
+
+        /* ═══════ TEAM ═══════ */
+
+        /* Globe animation */
+        @property --globe-pulse {
+            syntax: '<length>';
+            inherits: false;
+            initial-value: 40px;
+        }
+        @property --globe-pulse2 {
+            syntax: '<length>';
+            inherits: false;
+            initial-value: 28px;
+        }
+
+        .team-globe-feature {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: #0A1628;
+            overflow: hidden;
+        }
+
+        .globe-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .globe {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-image: url('https://i.postimg.cc/9QCCCVsQ/earth.png');
+            background-repeat: repeat-x;
+            background-size: cover;
+            animation: globe-spin 40s linear infinite, globe-glow 2s linear infinite alternate-reverse;
+            box-shadow:
+                0 -1px 1px 1px rgba(255,255,255,0.3),
+                -1px 1px 1px 1px rgba(184,151,58,0.4),
+                0 0 var(--globe-pulse) -10px rgba(184,151,58,0.3),
+                inset 0 0 40px -5px rgba(184,151,58,0.25),
+                inset 0 0 var(--globe-pulse2) -5px rgba(184,151,58,0.2);
+        }
+
+        .globe-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #FAFAF8;
+            margin-bottom: 0.5rem;
+        }
+
+        .globe-text p {
+            font-size: 0.9rem;
+            color: rgba(250,250,248,0.6);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        @keyframes globe-spin {
+            0% { background-position: 0 0; }
+            100% { background-position: -199% 0; }
+        }
+
+        @keyframes globe-glow {
+            0% {
+                --globe-pulse: 40px;
+                --globe-pulse2: 28px;
+            }
+            100% {
+                --globe-pulse: 55px;
+                --globe-pulse2: 18px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .team-globe-feature {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+            .globe { width: 140px; height: 140px; }
+            .globe-text p { max-width: 100%; }
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member { text-align: center; }
+
+        .team-placeholder {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-highlight);
+            border: 2px solid var(--color-border);
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-text-light);
+            transition: border-color 0.4s ease;
+        }
+
+        .team-placeholder:hover { border-color: var(--color-gold); }
+
+        .team-photo {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.25rem;
+            display: block;
+            filter: grayscale(20%);
+            transition: all 0.4s ease;
+            border: 2px solid var(--color-border);
+        }
+
+        .team-photo:hover { filter: grayscale(0%); border-color: var(--color-gold); }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-role { font-size: 0.78rem; color: var(--color-text-light); }
+
+        .team-degree {
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            opacity: 0.7;
+            margin-top: 0.15rem;
+            line-height: 1.4;
+        }
+
+        .team-linkedin {
+            display: inline-block;
+            margin-top: 0.4rem;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .team-linkedin:hover { color: var(--color-gold); }
+
+        .team-section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            margin-top: 2.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .team-section-label:first-of-type {
+            margin-top: 3rem;
+        }
+
+        .team-advisor-feature {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-card-bg);
+            margin-bottom: 1rem;
+        }
+
+        .advisor-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--color-border);
+            flex-shrink: 0;
+        }
+
+        .advisor-info {
+            flex: 1;
+        }
+
+        .advisor-info .team-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        .advisor-info .team-role {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .advisor-bio {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .advisor-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .team-advisor-feature {
+                flex-direction: column;
+                text-align: center;
+            }
+            .advisor-links { justify-content: center; }
+        }
+
+        .team-grid-leadership {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        .team-grid-leadership .team-placeholder,
+        .team-grid-leadership .team-photo {
+            width: 150px;
+            height: 150px;
+            font-size: 1.6rem;
+        }
+
+        /* ═══════ ANNUAL REPORT ═══════ */
+        #report {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        #report .section-label { color: rgba(255,255,255,0.5); }
+        #report .section-title { color: #fff; }
+        #report .section-divider { background: var(--color-gold); }
+
+        .report-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 1rem;
+        }
+
+        .report-description {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .report-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 2px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .report-download:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+
+        .report-download svg { width: 16px; height: 16px; }
+
+        /* ═══════ IGI CTA ═══════ */
+        #igi-cta {
+            background: var(--color-card-bg);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .igi-cta-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .igi-cta-content p {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .igi-cta-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--color-accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .igi-cta-btn:hover {
+            background: var(--color-text);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ═══════ FOOTER ═══════ */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-social { margin-bottom: 0.75rem; }
+
+        .footer-contact {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-contact a {
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover { color: var(--color-text); }
+        .footer-social-link { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold); text-decoration: none; transition: color 0.3s ease; }
+        .footer-social-link:hover { color: var(--color-text); }
+        .footer-social-sep { color: var(--color-text-light); margin: 0 0.5rem; }
+
+        .footer-text {
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* ═══════ ANIMATIONS ═══════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.hidden {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(250, 250, 248, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+
+            /* Hero */
+            .hero { min-height: 90vh; padding: 5rem 1rem 3rem; }
+            .hero-glass { padding: 2rem 1.5rem; }
+            .earnings-heading { font-size: 2.5rem; }
+            .hero-overline { font-size: 0.65rem; }
+            .hero-sub { font-size: 0.95rem; max-width: 90%; }
+
+            /* Performance */
+            .perf-vs { gap: 1.5rem; padding: 2rem 1rem; flex-wrap: wrap; }
+            .perf-vs-value { font-size: 2.2rem; }
+            .perf-chart-wrap { padding: 1rem 0.5rem 0.75rem; }
+            .perf-disclaimer { font-size: 0.7rem; }
+
+            /* Metrics */
+            .metrics-row { grid-template-columns: 1fr; gap: 1rem; }
+            .metric { padding: 1.25rem 1rem; }
+            .metric-value { font-size: 2rem; }
+
+            /* Governance */
+            .governance-grid { grid-template-columns: 1fr; }
+
+            /* Holdings table scroll */
+            .holdings-wrap { overflow-x: auto; }
+            .holdings-table { min-width: 500px; }
+            .holdings-table thead th,
+            .holdings-table tbody td { padding: 0.7rem 0.8rem; font-size: 0.8rem; }
+
+            /* Team */
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .team-photo { width: 100px; height: 100px; }
+
+            /* Globe */
+            .team-globe-feature {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .globe { width: 120px; height: 120px; }
+
+            /* Advisor */
+            .team-advisor-feature {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            .advisor-photo { width: 100px; height: 100px; }
+            .advisor-links { justify-content: center; }
+
+            /* Analysis */
+            .analysis-grid { grid-template-columns: 1fr; }
+
+            /* Report */
+            .report-content { flex-direction: column; text-align: center; }
+
+            /* Transactions */
+            .transactions-wrap { overflow-x: auto; }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid .team-member { text-align: center; }
+            .earnings-heading { font-size: 2rem; }
+            .perf-vs-value { font-size: 1.8rem; }
+            .hero-glass { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ NAVIGATION ═══════ -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <a href="igi.html" class="nav-brand-inactive">IGI</a>
+                <span class="nav-brand-sep">|</span>
+                <span class="nav-brand-active">Kol Ami</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#holdings">Holdings</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#report">Report</a></li>
+            </ul>
+            <div class="nav-social">
+                <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" aria-label="LinkedIn" class="nav-social-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/investment_group_israel/" target="_blank" aria-label="Instagram" class="nav-social-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.668.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════ HERO BACKGROUND ═══════ -->
+    <div class="hero-feature"></div>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <div class="hero-glass">
+            <div class="hero-overline">Investment Group Israel · Student Managed Fund</div>
+            <h1>The <em>Kol Ami</em> Fund</h1>
+            <div class="earnings-heading" id="earningsHeading">
+                <span class="earn-static">The&nbsp;</span><span class="earn-beat" id="earnBeat"><span class="earn-pct">+36%</span>Kol Ami</span><span class="earn-static">&nbsp;Fund</span>
+            </div>
+            <p class="hero-sub" id="heroSub">
+                A student-managed equity portfolio focused on global growth opportunities, delivering institutional-quality research and risk management.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-label reveal">The Fund</div>
+            <h2 class="section-title reveal">About Kol Ami</h2>
+            <div class="section-divider reveal"></div>
+            <p class="about-text reveal">
+                The Kol Ami Student Managed Investment Fund is the flagship program of Investment Group Israel at Reichman University. Selected through a competitive process, fund members conduct fundamental equity research, present investment theses, and manage a portfolio through a committee-based decision structure. The fund maintains a concentrated, high-conviction portfolio of global equities with a focus on identifying asymmetric risk-reward opportunities across sectors and geographies.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════ PERFORMANCE ═══════ -->
+    <section id="performance">
+        <div class="section-inner">
+            <div class="section-label reveal">Performance</div>
+            <h2 class="section-title reveal">2025 Results</h2>
+            <p class="perf-disclaimer reveal">Results represent simulated performance based on real-world market data; no actual assets were managed or traded</p>
+            <div class="section-divider reveal"></div>
+
+            <div class="performance-hero reveal">
+                <div class="perf-vs">
+                    <div class="perf-vs-item">
+                        <div class="perf-vs-value">+<span class="countup" data-target="36" data-decimals="0">0</span><span class="unit">%</span></div>
+                        <div class="perf-vs-label">Kol Ami Fund</div>
+                    </div>
+                    <div class="perf-vs-divider">vs</div>
+                    <div class="perf-vs-item">
+                        <div class="perf-vs-value benchmark">+<span class="countup" data-target="17.7" data-decimals="1">0</span><span class="unit">%</span></div>
+                        <div class="perf-vs-label">S&P 500</div>
+                    </div>
+                </div>
+            </div><!-- ANIMATED PERFORMANCE CHART (REAL SPY DATA) -->
+<div class="perf-chart-wrap reveal">
+    <svg viewBox="0 0 900 350" class="perf-chart" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="fundGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="spyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#A0A0A0" stop-opacity="0.1"/>
+                <stop offset="100%" stop-color="#A0A0A0" stop-opacity="0.01"/>
+            </linearGradient>
+        </defs>
+
+        <line x1="60" y1="278.6" x2="820" y2="278.6" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="278.6" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$9k</text>
+        <line x1="60" y1="230.5" x2="820" y2="230.5" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="230.5" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$10k</text>
+        <line x1="60" y1="182.4" x2="820" y2="182.4" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="182.4" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$11k</text>
+        <line x1="60" y1="134.4" x2="820" y2="134.4" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="134.4" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$12k</text>
+        <line x1="60" y1="86.3" x2="820" y2="86.3" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="86.3" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$13k</text>
+        <line x1="60" y1="38.2" x2="820" y2="38.2" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+        <text x="52" y="38.2" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="11" font-family="DM Sans, sans-serif" dy="4">$14k</text>
+        <text x="60.0" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Jan</text>
+        <text x="121.0" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Feb</text>
+        <text x="179.0" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Mar</text>
+        <text x="243.1" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Apr</text>
+        <text x="307.2" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">May</text>
+        <text x="371.3" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Jun</text>
+        <text x="432.4" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Jul</text>
+        <text x="499.5" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Aug</text>
+        <text x="563.6" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Sep</text>
+        <text x="627.7" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Oct</text>
+        <text x="697.9" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Nov</text>
+        <text x="755.9" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="10" font-family="DM Sans, sans-serif">Dec</text>
+
+        <polyline points="60.0,230.5 63.1,224.5 66.1,221.7 69.2,227.3 72.2,226.5 75.3,233.9 78.3,233.2 81.4,232.5 84.4,223.8 87.5,224.8 90.5,219.9 93.6,215.4 96.6,212.6 99.7,209.9 102.7,211.3 105.8,218.4 108.8,214.2 111.9,216.4 114.9,213.8 118.0,216.4 121.0,219.7 124.1,216.4 127.1,214.4 130.2,212.7 133.3,217.3 136.3,213.9 139.4,213.5 142.4,215.1 145.5,209.9 148.5,209.9 151.6,208.4 154.6,207.3 157.7,209.4 160.7,217.9 163.8,220.2 166.8,222.6 169.9,222.4 172.9,230.2 176.0,222.7 179.0,231.2 182.1,236.9 185.1,231.8 188.2,240.3 191.2,237.7 194.3,250.3 197.3,254.2 200.4,251.7 203.5,257.9 206.5,248.5 209.6,244.9 212.6,250.0 215.7,244.9 218.7,246.3 221.8,246.1 224.8,237.8 227.9,236.7 230.9,242.3 234.0,243.6 237.0,253.0 240.1,249.9 243.1,248.6 246.2,245.7 249.2,268.6 252.3,294.6 255.3,295.3 258.4,301.8 261.4,258.8 264.5,278.6 267.6,270.9 270.6,266.6 273.7,267.9 276.7,277.7 279.8,277.1 282.8,287.5 285.9,276.4 288.9,269.7 292.0,260.4 295.0,257.1 298.1,257.0 301.1,254.1 304.2,253.9 307.2,250.7 310.3,243.8 313.3,246.5 316.4,250.4 319.4,248.5 322.5,245.2 325.5,245.8 328.6,230.4 331.6,227.3 334.7,226.7 337.8,224.3 340.8,221.2 343.9,220.7 346.9,222.3 350.0,230.6 353.0,230.4 356.1,233.6 359.1,223.7 362.2,226.5 365.2,224.6 368.3,225.2 371.3,222.4 374.4,219.6 377.4,219.8 380.5,222.1 383.5,217.1 386.6,216.7 389.6,213.9 392.7,215.3 395.7,213.3 398.8,218.9 401.8,214.2 404.9,218.5 408.0,218.5 411.0,219.7 414.1,214.8 417.1,209.3 420.2,209.1 423.2,205.1 426.3,202.6 429.3,200.2 432.4,200.3 435.4,198.0 438.5,194.0 441.5,197.8 444.6,198.1 447.6,195.0 450.7,193.6 453.7,195.4 456.8,194.4 459.8,196.6 462.9,194.9 465.9,191.8 469.0,192.1 472.0,191.1 475.1,191.1 478.2,186.6 481.2,186.5 484.3,184.3 487.3,184.4 490.4,185.8 493.4,186.4 496.5,188.4 499.5,197.0 502.6,189.2 505.6,191.8 508.7,187.8 511.7,188.3 514.8,184.2 517.8,185.2 520.9,179.6 523.9,177.8 527.0,177.8 530.0,179.0 533.1,179.1 536.1,182.0 539.2,183.4 542.2,185.5 545.3,177.5 548.4,179.8 551.4,177.6 554.5,176.4 557.5,174.5 560.6,177.7 563.6,181.6 566.7,178.8 569.7,174.3 572.8,175.9 575.8,174.6 578.9,173.3 581.9,171.8 585.0,167.3 588.0,167.5 591.1,164.6 594.1,165.3 597.2,166.0 600.2,163.4 603.3,160.7 606.3,158.1 609.4,161.1 612.4,162.9 615.5,165.4 618.6,162.3 621.6,160.7 624.7,158.7 627.7,156.8 630.8,156.1 633.8,156.2 636.9,154.2 639.9,156.2 643.0,152.9 646.0,154.5 649.1,169.6 652.1,161.3 655.2,161.9 658.2,159.5 661.3,163.3 664.3,160.2 667.4,154.4 670.4,154.4 673.5,157.3 676.5,154.0 679.6,149.5 682.7,142.9 685.7,141.3 688.8,141.1 691.8,147.3 694.9,145.5 697.9,144.4 701.0,151.2 704.0,149.2 707.1,155.2 710.1,154.7 713.2,146.0 716.2,144.7 719.3,144.4 722.3,153.8 725.4,153.9 728.4,159.1 731.5,163.7 734.5,161.6 737.6,170.0 740.6,164.6 743.7,156.6 746.7,151.3 749.8,147.5 752.9,144.4 755.9,147.0 759.0,145.9 762.0,144.0 765.1,143.6 768.1,142.5 771.2,144.2 774.2,144.7 777.3,140.9 780.3,139.6 783.4,145.7 786.4,146.6 789.5,148.1 792.5,154.3 795.6,150.1 798.6,145.0 801.7,141.5 804.7,138.9 807.8,136.9 810.8,137.0 813.9,139.0 816.9,139.7 820.0,143.9" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" class="chart-line spy-line" stroke-dasharray="1463" stroke-dashoffset="1463"/>
+
+        <polygon points="60.0,230.2 63.1,228.0 66.1,224.4 69.2,225.5 72.2,227.3 75.3,228.2 78.3,230.3 81.4,228.8 84.4,225.0 87.5,223.9 90.5,221.1 93.6,213.5 96.6,214.1 99.7,214.0 102.7,214.1 105.8,218.9 108.8,222.0 111.9,221.6 114.9,219.2 118.0,220.5 121.0,225.0 124.1,217.7 127.1,221.1 130.2,219.6 133.3,220.8 136.3,215.6 139.4,218.0 142.4,215.9 145.5,212.3 148.5,212.2 151.6,207.8 154.6,209.8 157.7,214.3 160.7,218.5 163.8,223.7 166.8,228.0 169.9,223.7 172.9,229.7 176.0,228.1 179.0,233.9 182.1,237.2 185.1,228.4 188.2,234.3 191.2,232.6 194.3,241.8 197.3,241.0 200.4,238.9 203.5,240.2 206.5,232.6 209.6,228.8 212.6,229.6 215.7,227.0 218.7,227.0 221.8,230.2 224.8,226.9 227.9,227.4 230.9,230.2 234.0,233.8 237.0,240.3 240.1,242.5 243.1,239.7 246.2,237.9 249.2,255.6 252.3,272.7 255.3,275.5 258.4,280.2 261.4,254.7 264.5,267.0 267.6,262.6 270.6,260.0 273.7,258.8 276.7,264.9 279.8,265.3 282.8,269.6 285.9,263.6 288.9,256.8 292.0,248.0 295.0,244.8 298.1,245.6 301.1,246.1 304.2,247.0 307.2,245.3 310.3,243.9 313.3,244.3 316.4,245.4 319.4,245.3 322.5,239.7 325.5,239.9 328.6,228.1 331.6,223.4 334.7,220.1 337.8,223.1 340.8,218.5 343.9,219.4 346.9,222.0 350.0,226.7 353.0,223.8 356.1,226.2 359.1,221.2 362.2,224.7 365.2,226.3 368.3,227.4 371.3,225.9 374.4,222.1 377.4,222.0 380.5,222.3 383.5,215.7 386.6,212.6 389.6,211.9 392.7,212.1 395.7,212.9 398.8,218.2 401.8,210.0 404.9,211.6 408.0,211.0 411.0,212.2 414.1,208.7 417.1,200.8 420.2,200.6 423.2,195.1 426.3,192.3 429.3,190.8 432.4,193.5 435.4,189.3 438.5,187.8 441.5,187.4 444.6,184.4 447.6,181.7 450.7,176.6 453.7,173.7 456.8,172.1 459.8,169.2 462.9,167.8 465.9,162.3 469.0,162.2 472.0,164.9 475.1,168.9 478.2,162.8 481.2,162.5 484.3,162.7 487.3,162.5 490.4,161.7 493.4,161.7 496.5,165.1 499.5,176.3 502.6,169.1 505.6,168.9 508.7,170.1 511.7,163.5 514.8,161.7 517.8,160.7 520.9,153.3 523.9,149.2 527.0,150.6 530.0,146.2 533.1,144.2 536.1,152.5 539.2,157.5 542.2,156.0 545.3,142.0 548.4,140.6 551.4,140.9 554.5,141.9 557.5,137.0 560.6,139.9 563.6,143.7 566.7,144.2 569.7,138.4 572.8,134.5 575.8,129.6 578.9,124.7 581.9,126.7 585.0,120.0 588.0,112.7 591.1,105.5 594.1,108.5 597.2,109.3 600.2,100.3 603.3,98.1 606.3,95.7 609.4,95.7 612.4,98.6 615.5,101.7 618.6,101.6 621.6,99.1 624.7,100.4 627.7,94.7 630.8,88.7 633.8,83.7 636.9,71.2 639.9,70.8 643.0,63.0 646.0,66.2 649.1,87.0 652.1,75.3 655.2,73.5 658.2,66.1 661.3,70.4 664.3,72.0 667.4,63.3 670.4,61.4 673.5,70.0 676.5,62.7 679.6,53.5 682.7,45.8 685.7,45.8 688.8,43.4 691.8,52.1 694.9,48.4 697.9,46.8 701.0,59.8 704.0,53.7 707.1,65.1 710.1,63.1 713.2,54.4 716.2,55.4 719.3,51.4 722.3,67.6 725.4,71.1 728.4,75.1 731.5,83.0 734.5,83.4 737.6,100.0 740.6,95.9 743.7,78.6 746.7,75.0 749.8,67.3 752.9,61.6 755.9,66.1 759.0,62.7 762.0,58.3 765.1,58.1 768.1,59.5 771.2,58.1 774.2,56.4 777.3,53.7 780.3,51.6 783.4,56.8 786.4,63.8 789.5,67.3 792.5,76.9 795.6,70.5 798.6,60.0 801.7,52.9 804.7,53.6 807.8,50.8 810.8,53.1 813.9,54.4 816.9,54.4 820.0,57.5 820.0,310 60,310" fill="url(#fundGrad)" class="chart-fill fund-fill"/>
+        <polyline points="60.0,230.2 63.1,228.0 66.1,224.4 69.2,225.5 72.2,227.3 75.3,228.2 78.3,230.3 81.4,228.8 84.4,225.0 87.5,223.9 90.5,221.1 93.6,213.5 96.6,214.1 99.7,214.0 102.7,214.1 105.8,218.9 108.8,222.0 111.9,221.6 114.9,219.2 118.0,220.5 121.0,225.0 124.1,217.7 127.1,221.1 130.2,219.6 133.3,220.8 136.3,215.6 139.4,218.0 142.4,215.9 145.5,212.3 148.5,212.2 151.6,207.8 154.6,209.8 157.7,214.3 160.7,218.5 163.8,223.7 166.8,228.0 169.9,223.7 172.9,229.7 176.0,228.1 179.0,233.9 182.1,237.2 185.1,228.4 188.2,234.3 191.2,232.6 194.3,241.8 197.3,241.0 200.4,238.9 203.5,240.2 206.5,232.6 209.6,228.8 212.6,229.6 215.7,227.0 218.7,227.0 221.8,230.2 224.8,226.9 227.9,227.4 230.9,230.2 234.0,233.8 237.0,240.3 240.1,242.5 243.1,239.7 246.2,237.9 249.2,255.6 252.3,272.7 255.3,275.5 258.4,280.2 261.4,254.7 264.5,267.0 267.6,262.6 270.6,260.0 273.7,258.8 276.7,264.9 279.8,265.3 282.8,269.6 285.9,263.6 288.9,256.8 292.0,248.0 295.0,244.8 298.1,245.6 301.1,246.1 304.2,247.0 307.2,245.3 310.3,243.9 313.3,244.3 316.4,245.4 319.4,245.3 322.5,239.7 325.5,239.9 328.6,228.1 331.6,223.4 334.7,220.1 337.8,223.1 340.8,218.5 343.9,219.4 346.9,222.0 350.0,226.7 353.0,223.8 356.1,226.2 359.1,221.2 362.2,224.7 365.2,226.3 368.3,227.4 371.3,225.9 374.4,222.1 377.4,222.0 380.5,222.3 383.5,215.7 386.6,212.6 389.6,211.9 392.7,212.1 395.7,212.9 398.8,218.2 401.8,210.0 404.9,211.6 408.0,211.0 411.0,212.2 414.1,208.7 417.1,200.8 420.2,200.6 423.2,195.1 426.3,192.3 429.3,190.8 432.4,193.5 435.4,189.3 438.5,187.8 441.5,187.4 444.6,184.4 447.6,181.7 450.7,176.6 453.7,173.7 456.8,172.1 459.8,169.2 462.9,167.8 465.9,162.3 469.0,162.2 472.0,164.9 475.1,168.9 478.2,162.8 481.2,162.5 484.3,162.7 487.3,162.5 490.4,161.7 493.4,161.7 496.5,165.1 499.5,176.3 502.6,169.1 505.6,168.9 508.7,170.1 511.7,163.5 514.8,161.7 517.8,160.7 520.9,153.3 523.9,149.2 527.0,150.6 530.0,146.2 533.1,144.2 536.1,152.5 539.2,157.5 542.2,156.0 545.3,142.0 548.4,140.6 551.4,140.9 554.5,141.9 557.5,137.0 560.6,139.9 563.6,143.7 566.7,144.2 569.7,138.4 572.8,134.5 575.8,129.6 578.9,124.7 581.9,126.7 585.0,120.0 588.0,112.7 591.1,105.5 594.1,108.5 597.2,109.3 600.2,100.3 603.3,98.1 606.3,95.7 609.4,95.7 612.4,98.6 615.5,101.7 618.6,101.6 621.6,99.1 624.7,100.4 627.7,94.7 630.8,88.7 633.8,83.7 636.9,71.2 639.9,70.8 643.0,63.0 646.0,66.2 649.1,87.0 652.1,75.3 655.2,73.5 658.2,66.1 661.3,70.4 664.3,72.0 667.4,63.3 670.4,61.4 673.5,70.0 676.5,62.7 679.6,53.5 682.7,45.8 685.7,45.8 688.8,43.4 691.8,52.1 694.9,48.4 697.9,46.8 701.0,59.8 704.0,53.7 707.1,65.1 710.1,63.1 713.2,54.4 716.2,55.4 719.3,51.4 722.3,67.6 725.4,71.1 728.4,75.1 731.5,83.0 734.5,83.4 737.6,100.0 740.6,95.9 743.7,78.6 746.7,75.0 749.8,67.3 752.9,61.6 755.9,66.1 759.0,62.7 762.0,58.3 765.1,58.1 768.1,59.5 771.2,58.1 774.2,56.4 777.3,53.7 780.3,51.6 783.4,56.8 786.4,63.8 789.5,67.3 792.5,76.9 795.6,70.5 798.6,60.0 801.7,52.9 804.7,53.6 807.8,50.8 810.8,53.1 813.9,54.4 816.9,54.4 820.0,57.5" fill="none" stroke="#D4AF37" stroke-width="2.5" class="chart-line fund-line" stroke-dasharray="1463" stroke-dashoffset="1463"/>
+
+        <text x="828.0" y="57.54615506538606" fill="#D4AF37" font-size="12" font-weight="600" font-family="DM Sans, sans-serif" dy="4" class="chart-label">$13,598</text>
+        <text x="828.0" y="143.94060553253235" fill="rgba(255,255,255,0.4)" font-size="11" font-family="DM Sans, sans-serif" dy="4" class="chart-label">$11,801</text>
+
+        <circle cx="820.0" cy="57.54615506538606" r="4" fill="#D4AF37" class="chart-dot"/>
+        <circle cx="820.0" cy="143.94060553253235" r="3" fill="rgba(255,255,255,0.4)" class="chart-dot"/>
+    </svg>
+    <div class="perf-chart-legend">
+        <span class="legend-item"><span class="legend-line fund"></span>Kol Ami Fund</span>
+        <span class="legend-item"><span class="legend-line spy"></span>S&P 500</span>
+    </div>
+</div>
+
+            <div class="metrics-row reveal">
+                <div class="metric">
+                    <div class="metric-value">+18.3<span class="unit">pp</span></div>
+                    <div class="metric-label">Alpha vs Benchmark</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1.68</div>
+                    <div class="metric-label">Sharpe Ratio</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1.31</div>
+                    <div class="metric-label">Information Ratio</div>
+                </div>
+            </div>
+
+            
+
+            <p class="performance-note reveal">
+                Portfolio return for calendar year 2025. Past performance does not guarantee future results.
+            </p>
+
+            <div class="report-inline reveal" style="text-align:center; margin-top:2rem;">
+                <a href="Kol-Ami-Annual-Report-2025.pdf" target="_blank" class="report-inline-btn">
+                    View Full 2025 Report
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ HOLDINGS ═══════ -->
+    <section id="holdings">
+        <div class="section-inner">
+            <div class="section-label reveal">Portfolio</div>
+            <h2 class="section-title reveal">Select Holdings</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="holdings-wrap">
+            <table class="holdings-table reveal">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Sector</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Micron Technology <span class="ticker">MU</span></td>
+                        <td>Semiconductors</td>
+                        <td style="text-align:right">7.4%</td>
+                    </tr>
+                    <tr>
+                        <td>ASML Holding <span class="ticker">ASML</span></td>
+                        <td>Semiconductors</td>
+                        <td style="text-align:right">6.9%</td>
+                    </tr>
+                    <tr>
+                        <td>Rocket Lab USA <span class="ticker">RKLB</span></td>
+                        <td>Aerospace & Defense</td>
+                        <td style="text-align:right">5.9%</td>
+                    </tr>
+                    <tr>
+                        <td>Lockheed Martin <span class="ticker">LMT</span></td>
+                        <td>Aerospace & Defense</td>
+                        <td style="text-align:right">5.9%</td>
+                    </tr>
+                    <tr>
+                        <td>UnitedHealth Group <span class="ticker">UNH</span></td>
+                        <td>Healthcare</td>
+                        <td style="text-align:right">5.9%</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="holdings-cta reveal" style="text-align:center; margin-top:2.5rem;">
+                <!-- REPLACE: Update href with actual PDF/spreadsheet link -->
+                <a href="Kol-Ami-Holdings-2025.xlsx" class="holdings-download" download>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:15px;height:15px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    View Full Holdings
+                </a>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="transactions-section reveal">
+                <h3 class="transactions-title">Recent Transactions</h3>
+                <div class="transactions-wrap">
+                <table class="holdings-table transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Company</th>
+                            <th>Action</th>
+                            <th style="text-align:right">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tx-date">Mar 2026</td>
+                            <td>Alphabet Inc. <span class="ticker">GOOG</span></td>
+                            <td><span class="tx-trim">Trim</span></td>
+                            <td style="text-align:right">Reduced position</td>
+                        </tr>
+                        <tr>
+                            <td class="tx-date">Mar 2026</td>
+                            <td>BAE Systems <span class="ticker">BA/LN</span></td>
+                            <td><span class="tx-buy">Buy</span></td>
+                            <td style="text-align:right">New position — UK defense sector</td>
+                        </tr>
+                        <tr>
+                            <td class="tx-date">Mar 2026</td>
+                            <td>Nike Inc. <span class="ticker">NKE</span></td>
+                            <td><span class="tx-buy">Buy</span></td>
+                            <td style="text-align:right">New position — consumer recovery thesis</td>
+                        </tr>
+                        <tr>
+                            <td class="tx-date">Mar 2026</td>
+                            <td>Hudbay Minerals <span class="ticker">HBM</span></td>
+                            <td><span class="tx-buy">Buy</span></td>
+                            <td style="text-align:right">New position — copper exposure</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ ANALYSIS ═══════ -->
+    <section id="analysis">
+        <div class="section-inner">
+            <div class="section-label reveal">Research</div>
+            <h2 class="section-title reveal">Analyst Research</h2>
+            <div class="section-divider reveal"></div>
+            <p class="analysis-intro reveal">
+                Every position in the Kol Ami portfolio is backed by rigorous fundamental analysis. Our analysts produce institutional-quality equity research covering valuation, catalysts, and risk.
+            </p>
+            <div style="text-align:center; margin-top:2rem;" class="reveal">
+                <a href="research.html" style="display:inline-block;padding:0.85rem 2.5rem;border:1px solid #B8973A;border-radius:2px;background:#B8973A;color:#FFFFFF;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.3s ease;font-weight:600;" onmouseover="this.style.background='#FFFFFF';this.style.color='#B8973A'" onmouseout="this.style.background='#B8973A';this.style.color='#FFFFFF'">View Research Library &#8594;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ GOVERNANCE ═══════ -->
+    <section id="governance" style="background:var(--color-card-bg);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+        <div class="section-inner">
+            <div class="section-label reveal">How We Operate</div>
+            <h2 class="section-title reveal">Fund Governance</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="governance-grid reveal">
+                <div class="governance-card">
+                    <div class="governance-icon">⚖️</div>
+                    <h3>Decision-Making</h3>
+                    <p>The portfolio is managed by an Investment Committee of 12–15 members, all alumni of IGI. All decisions to open or close positions require a simple majority vote following a formal debate of the investment thesis.</p>
+                </div>
+                <div class="governance-card">
+                    <div class="governance-icon">🔄</div>
+                    <h3>Active Review Cycle</h3>
+                    <p>The committee meets bi-weekly to audit current holdings, review real-world market data, and adjust positions based on new macroeconomic developments.</p>
+                </div>
+                <div class="governance-card">
+                    <div class="governance-icon">🛡️</div>
+                    <h3>Advisory Oversight</h3>
+                    <p>The committee is advised by Sandrine Bernstein, a Wharton graduate and seasoned wealth manager. She provides expert guidance on position sizing and risk management, and maintains veto authority to ensure strict adherence to risk parameters.</p>
+                </div>
+                <div class="governance-card">
+                    <div class="governance-icon">📊</div>
+                    <h3>Operational Framework</h3>
+                    <p>The portfolio applies fundamental research to real-world data as a high-fidelity simulation. This shadow portfolio structure serves as a specialized incubator to validate the student-managed investment fund model, utilizing a diverse team of international students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ TEAM ═══════ -->
+    <section id="team">
+        <div class="section-inner">
+            <div class="section-label reveal">Our People</div>
+            <h2 class="section-title reveal">2025 Fund Team</h2>
+            <div class="section-divider reveal"></div>
+
+            <!-- Globe feature -->
+            <div class="team-globe-feature reveal">
+                <div class="globe-wrap">
+                    <div class="globe"></div>
+                </div>
+                <div class="globe-text">
+                    <h3>A Global Perspective</h3>
+                    <p>Our investment committee brings together students from across the world — combining diverse market perspectives, cultural insights, and analytical frameworks to identify opportunities others miss.</p>
+                </div>
+            </div>
+
+            <!-- Senior Advisor -->
+            <div class="team-section-label reveal">Senior Advisor</div>
+            <div class="team-advisor-feature reveal">
+                <img src="sandrine.png" alt="Sandrine Bernstein" class="advisor-photo">
+                <div class="advisor-info">
+                    <div class="team-name">Sandrine Bernstein</div>
+                    <div class="team-role">Senior Advisor</div>
+                    <p class="advisor-bio">Wharton graduate and seasoned wealth manager, Sandrine leads Investment Group Israel and advises Kol Ami, bringing decades of experience in asset management, private equity, and financial advisory.</p>
+                    <div class="advisor-links">
+                        <span class="team-degree">Wharton School of Business</span>
+                        <a href="https://www.linkedin.com/in/sandrine-bernstein/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fund Team -->
+            <div class="team-grid reveal">
+                <div class="team-member">
+                    <img src="gabriel.png" alt="Gabriel Gichtin" class="team-photo">
+                    <div class="team-name">Gabriel Gichtin</div>
+                    <div class="team-role">Head of Portfolio</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="https://www.linkedin.com/in/gabriel-gichtin-7a7310206/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="illy.png" alt="Illy Hagege" class="team-photo">
+                    <div class="team-name">Illy Hagege</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="https://www.linkedin.com/in/illyhagege/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="zvi.png" alt="Zvi Fermaglich" class="team-photo">
+                    <div class="team-name">Zvi Fermaglich</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Government & Diplomacy '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="sammuel.png" alt="Sammuel Roqueti-Mauch" class="team-photo">
+                    <div class="team-name">Sammuel Roqueti-Mauch</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Data Science & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="iakov.png" alt="Iakov Vainshtein" class="team-photo">
+                    <div class="team-name">Iakov Vainshtein</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="jens.png" alt="Jens Dittberner" class="team-photo">
+                    <div class="team-name">Jens Dittberner</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="yoel.png" alt="Yoel Salamon" class="team-photo">
+                    <div class="team-name">Yoel Salamon</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="leo.png" alt="Leo Sandler" class="team-photo">
+                    <div class="team-name">Leo Sandler</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Data Science & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="sammy.png" alt="Sammy Balsam" class="team-photo">
+                    <div class="team-name">Sammy Balsam</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="alberto.png" alt="Alberto Aronson" class="team-photo">
+                    <div class="team-name">Alberto Aronson</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business & Economics '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="neriel.png" alt="Neriel Friedberg" class="team-photo">
+                    <div class="team-name">Neriel Friedberg</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="jonathan.png" alt="Jonathan Bachrach" class="team-photo">
+                    <div class="team-name">Jonathan Bachrach</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business '26</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="ariel.png" alt="Ariel Derovan" class="team-photo">
+                    <div class="team-name">Ariel Derovan</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business, Economics & Accounting '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="johnny.png" alt="Johnny Crocker" class="team-photo">
+                    <div class="team-name">Johnny Crocker</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="yoni.png" alt="Yoni Chajmovic" class="team-photo">
+                    <div class="team-name">Yoni Chajmovic</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="daniil.png" alt="Daniil Lyashchenko" class="team-photo">
+                    <div class="team-name">Daniil Lyashchenko</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Business '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <img src="samuel.png" alt="Samuel Klein" class="team-photo">
+                    <div class="team-name">Samuel Klein</div>
+                    <div class="team-role">Analyst</div>
+                    <div class="team-degree">Accounting & Business '27</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ IGI CTA ═══════ -->
+    <section id="igi-cta">
+        <div class="section-inner">
+            <div class="igi-cta-content">
+                <div class="section-label reveal">Our Parent Organization</div>
+                <h2 class="section-title reveal">Investment Group Israel</h2>
+                <div class="section-divider reveal" style="margin-left:auto;margin-right:auto;"></div>
+                <p class="reveal">
+                    Kol Ami is the flagship fund of Investment Group Israel. Learn more about IGI's educational programs, stock pitch competitions, and how to get involved.
+                </p>
+                <a href="igi.html" class="igi-cta-btn reveal">Explore IGI →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="position:relative;z-index:1;background:var(--color-bg);">
+        <div class="footer-brand">Kol Ami Fund · Investment Group Israel</div>
+        <div class="footer-contact">
+            <a href="/cdn-cgi/l/email-protection#e78e808ea795828e848f8a8689c98684c98e8b"><span class="__cf_email__" data-cfemail="a8c1cfc1e8dacdc1cbc0c5c9c686c9cb86c1c4">[email&#160;protected]</span></a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" class="footer-social-link">LinkedIn</a>
+            <span class="footer-social-sep">·</span>
+            <a href="https://www.instagram.com/investment_group_israel/" target="_blank" class="footer-social-link">Instagram</a>
+        </div>
+        <p class="footer-text">
+            Reichman University · Arison School of Business · Herzliya, Israel<br>
+            © 2026 Investment Group Israel. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+        // ═══════ EARNINGS BEAT ANIMATION ═══════
+        (function() {
+            const heading = document.getElementById('earningsHeading');
+            const beat = document.getElementById('earnBeat');
+            const sub = document.getElementById('heroSub');
+
+            // If arriving via hash link, skip to final state immediately
+            if (window.location.hash) {
+                document.querySelectorAll('.earn-static').forEach(el => {
+                    el.style.animation = 'none';
+                    el.style.opacity = '1';
+                });
+                beat.style.animation = 'none';
+                beat.style.opacity = '1';
+                beat.style.transform = 'none';
+                beat.classList.add('settled');
+                sub.classList.add('visible');
+                sub.style.transition = 'none';
+                return;
+            }
+
+            // Normal animation flow
+            setTimeout(() => {
+                beat.classList.add('slam');
+                heading.classList.add('shake');
+            }, 1200);
+
+            setTimeout(() => {
+                heading.classList.remove('shake');
+            }, 1600);
+
+            setTimeout(() => {
+                beat.classList.add('settled');
+            }, 2400);
+
+            setTimeout(() => {
+                sub.classList.add('visible');
+            }, 2800);
+        })();
+
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => el.classList.add('hidden'));
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('hidden'); e.target.classList.add('visible'); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) {
+                    const top = t.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight - 20;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ═══════ COUNT-UP ANIMATION ═══════
+        function animateCountUp(el) {
+            const target = parseFloat(el.dataset.target);
+            const decimals = parseInt(el.dataset.decimals) || 0;
+            const duration = 4000;
+            const start = performance.now();
+
+            function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+                el.textContent = current.toFixed(decimals);
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        }
+
+        // ═══════ CHART DRAW ANIMATION + COUNT-UP SYNC ═══════
+        const chartObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !e.target.dataset.animated) {
+                    e.target.dataset.animated = 'true';
+                    // Start chart draw
+                    e.target.querySelectorAll('.chart-line, .chart-fill, .chart-label, .chart-dot').forEach(el => {
+                        el.classList.add('animated');
+                    });
+                    // Start countups at the same time
+                    document.querySelectorAll('.countup').forEach(el => {
+                        if (!el.dataset.counted) {
+                            el.dataset.counted = 'true';
+                            animateCountUp(el);
+                        }
+                         });
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.perf-chart-wrap').forEach(el => {
+            chartObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

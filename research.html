@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Library | Kol Ami Fund</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAF8;
+            --color-text: #1A1A1A;
+            --color-text-light: #6B6B6B;
+            --color-gold: #B8973A;
+            --color-border: #E8E6E1;
+            --color-card-bg: #FFFFFF;
+            --color-highlight: #F5F3EE;
+            --color-accent: #0F1B2D;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ═══════ NAVIGATION ═══════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.25rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(250, 250, 248, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--color-border);
+            padding: 0.75rem 3rem;
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-brand span { color: var(--color-gold); margin: 0 0.4rem; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--color-gold); }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--color-text);
+        }
+
+        /* ═══════ HEADER ═══════ */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: var(--color-accent);
+        }
+
+        .page-header .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            opacity: 0.7;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ═══════ FILTER BAR ═══════ */
+        .filter-bar {
+            max-width: 1000px;
+            margin: -1.5rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-inner {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .filter-inner input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--color-text);
+            background: transparent;
+        }
+
+        .filter-inner input::placeholder {
+            color: var(--color-text-light);
+        }
+
+        .filter-icon {
+            color: var(--color-text-light);
+            flex-shrink: 0;
+        }
+
+        /* ═══════ RESEARCH GRID ═══════ */
+        .research-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .research-count {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            border: 1px solid var(--color-border);
+            border-radius: 3px;
+            background: var(--color-card-bg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .research-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .research-ticker {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+            background: rgba(184, 151, 58, 0.08);
+            padding: 0.3rem 0.6rem;
+            border-radius: 2px;
+        }
+
+        .research-action {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.5rem;
+            border-radius: 2px;
+        }
+
+        .research-action.long {
+            color: #2D8F4E;
+            background: rgba(45, 143, 78, 0.08);
+        }
+
+        .research-action.hold {
+            color: #B8973A;
+            background: rgba(184, 151, 58, 0.08);
+        }
+
+        .research-action.short {
+            color: #C0392B;
+            background: rgba(192, 57, 43, 0.08);
+        }
+
+        .research-company {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.25;
+            margin-bottom: 0.25rem;
+        }
+
+        .research-sector {
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.25rem;
+        }
+
+        .research-meta {
+            margin-top: auto;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .research-analyst {
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+        }
+
+        .research-analyst strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .research-date {
+            font-size: 0.7rem;
+            color: var(--color-text-light);
+        }
+
+        .research-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .research-view:hover {
+            gap: 0.7rem;
+        }
+
+        /* ═══════ BACK LINK ═══════ */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover { color: var(--color-gold); }
+
+        /* ═══════ FOOTER ═══════ */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-text {
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(250, 250, 248, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .research-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .research-grid { grid-template-columns: 1fr; }
+            .page-header { padding: 7rem 1.5rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="kolami.html" class="nav-brand">Kol Ami <span>|</span> Research</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="kolami.html#analysis">← Back to Fund</a></li>
+            <li><a href="igi.html">IGI</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="page-header">
+        <div class="section-label">Kol Ami Fund</div>
+        <h1>Research Library</h1>
+        <p>Investment theses and equity research produced by Kol Ami Fund analysts.</p>
+    </header>
+
+    <div class="filter-bar">
+        <div class="filter-inner">
+            <svg class="filter-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" id="searchInput" placeholder="Search by company, ticker, analyst, or sector...">
+        </div>
+    </div>
+
+    <section class="research-section">
+        <a href="kolami.html#analysis" class="back-link">← Back to Kol Ami Fund</a>
+
+        <div class="research-count" id="researchCount">6 Research Reports</div>
+
+        <div class="research-grid" id="researchGrid">
+
+            <!-- TEMPLATE: Copy this card for each research report -->
+            <!-- Update: company name, ticker, sector, action (long/short), analyst, date, and PDF href -->
+
+            <div class="research-card" data-search="nova ltd nvmi semiconductors equipment gabriel gichtin illy hagege yoel salmon">
+                <div class="research-card-header">
+                    <span class="research-ticker">NVMI</span>
+                    <span class="research-action hold">Hold</span>
+                </div>
+                <div class="research-company">Nova Ltd.</div>
+                <div class="research-sector">Semiconductors · Equipment</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Gabriel Gichtin, Illy Hagege, Yoel Salmon</strong></div>
+                        <div class="research-date">30 Nov 2025</div>
+                    </div>
+                </div>
+                <a href="nvmi.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+            <div class="research-card" data-search="sofi technologies sofi fintech lending john doe">
+                <div class="research-card-header">
+                    <span class="research-ticker">SOFI</span>
+                    <span class="research-action long">Long</span>
+                </div>
+                <div class="research-company">SoFi Technologies</div>
+                <div class="research-sector">Fintech · Lending & Banking</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Analyst Name</strong></div>
+                        <div class="research-date">Spring 2025</div>
+                    </div>
+                </div>
+                <a href="sofi.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+            <div class="research-card" data-search="micron technology mu semiconductors memory chips jane smith">
+                <div class="research-card-header">
+                    <span class="research-ticker">MU</span>
+                    <span class="research-action long">Long</span>
+                </div>
+                <div class="research-company">Micron Technology</div>
+                <div class="research-sector">Semiconductors · Memory</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Analyst Name</strong></div>
+                        <div class="research-date">Spring 2025</div>
+                    </div>
+                </div>
+                <a href="mu.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+            <div class="research-card" data-search="rocket lab usa rklb aerospace defense space launch">
+                <div class="research-card-header">
+                    <span class="research-ticker">RKLB</span>
+                    <span class="research-action long">Long</span>
+                </div>
+                <div class="research-company">Rocket Lab USA</div>
+                <div class="research-sector">Aerospace · Space Launch</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Analyst Name</strong></div>
+                        <div class="research-date">Spring 2025</div>
+                    </div>
+                </div>
+                <a href="rklb.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+            <div class="research-card" data-search="amd advanced micro devices semiconductors chips gpu">
+                <div class="research-card-header">
+                    <span class="research-ticker">AMD</span>
+                    <span class="research-action long">Long</span>
+                </div>
+                <div class="research-company">Advanced Micro Devices</div>
+                <div class="research-sector">Semiconductors · GPUs</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Analyst Name</strong></div>
+                        <div class="research-date">Spring 2025</div>
+                    </div>
+                </div>
+                <a href="amd.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+            <div class="research-card" data-search="alphabet google goog googl technology advertising cloud ai gabriel gichtin">
+                <div class="research-card-header">
+                    <span class="research-ticker">GOOGL</span>
+                    <span class="research-action hold">Hold</span>
+                </div>
+                <div class="research-company">Alphabet Inc.</div>
+                <div class="research-sector">Technology · Advertising & Cloud</div>
+                <div class="research-meta">
+                    <div>
+                        <div class="research-analyst"><strong>Gabriel Gichtin</strong></div>
+                        <div class="research-date">1 Apr 2025</div>
+                    </div>
+                </div>
+                <a href="goog.pdf" target="_blank" class="research-view">View Report →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">
+            Reichman University · Arison School of Business · Herzliya, Israel<br>
+            © 2026 Investment Group Israel. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+
+        // Search filter
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.research-card');
+        const countEl = document.getElementById('researchCount');
+
+        searchInput.addEventListener('input', function() {
+            const q = this.value.toLowerCase();
+            let visible = 0;
+            cards.forEach(card => {
+                const match = card.dataset.search.includes(q) ||
+                              card.querySelector('.research-company').textContent.toLowerCase().includes(q);
+                card.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+            countEl.textContent = visible + ' Research Report' + (visible !== 1 ? 's' : '');
+        });
+    </script>
+</body>
+</html>

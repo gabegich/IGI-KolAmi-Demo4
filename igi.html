@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Group Israel | Reichman University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAF8;
+            --color-text: #1A1A1A;
+            --color-text-light: #6B6B6B;
+            --color-accent: #2C3E50;
+            --color-border: #E8E6E1;
+            --color-card-bg: #FFFFFF;
+            --color-highlight: #F0EDE8;
+            --color-gold: #B8973A;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ═══════ NAVIGATION ═══════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: box-shadow 0.4s ease;
+        }
+
+        nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.04); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .nav-logo {
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-brand-active {
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 2px;
+        }
+
+        .nav-brand-sep {
+            color: var(--color-border);
+            margin: 0 0.5rem;
+            font-weight: 300;
+        }
+
+        .nav-brand-inactive {
+            color: var(--color-text-light);
+            text-decoration: none;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand-inactive:hover {
+            color: var(--color-text);
+            border-bottom-color: var(--color-border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--color-text); }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--color-text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-social {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: 1rem;
+        }
+
+        .nav-social-icon {
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-social-icon:hover { color: var(--color-gold); }
+
+        /* ═══════ HERO IMAGE (PARALLAX) ═══════ */
+        .hero-feature {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('igi-hero.png') center center no-repeat;
+            background-size: cover;
+        }
+
+        .hero-feature::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 26, 26, 0.23) 0%,
+                rgba(26, 26, 26, 0.0) 40%,
+                rgba(250, 250, 248, 0.65) 100%
+            );
+        }
+
+        /* ═══════ HERO ═══════ */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            width: 1px; height: 50px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+
+        .scroll-indicator { cursor:pointer; position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.4rem; opacity:0; animation:fadeIn 0.8s ease 4s forwards; z-index:2; text-decoration:none; }
+        .scroll-indicator span { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(0,0,0,0.5); }
+        .scroll-chevron { width:20px; height:20px; border-right:1.5px solid rgba(0,0,0,0.5); border-bottom:1.5px solid rgba(0,0,0,0.5); transform:rotate(45deg); animation:chevron-bounce 2s ease-in-out infinite; }
+        @keyframes scroll-pulse { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+        @keyframes chevron-bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+        @keyframes fadeIn { to{opacity:1} }
+
+        .hero-overline {
+            font-size: 0.86rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-logo {
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 12px rgba(0,0,0,0.3));
+        }
+
+        .hero h1 {
+            display: none;
+        }
+
+        .hero-title-expand {
+            font-family: var(--font-display);
+            font-size: clamp(3.6rem, 8.4vw, 6rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #1B3A6B;
+            text-shadow: 0 2px 16px rgba(255,255,255,0.4);
+            display: flex;
+            justify-content: center;
+            gap: 0.3em;
+        }
+
+        .hero-word {
+            display: inline-flex;
+            overflow: hidden;
+        }
+
+        .hero-word-hidden {
+            display: inline-block;
+            max-width: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-width 1.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.92s ease;
+            white-space: nowrap;
+        }
+
+        .hero-title-expand.expanded .hero-word-hidden {
+            max-width: 12ch;
+            opacity: 1;
+        }
+
+        /* Stagger the three words */
+        .hero-word:nth-child(1) .hero-word-hidden {
+            transition-delay: 0.3s;
+        }
+        .hero-word:nth-child(2) .hero-word-hidden {
+            transition-delay: 0.6s;
+        }
+        .hero-word:nth-child(3) .hero-word-hidden {
+            transition-delay: 0.9s;
+        }
+
+        .hero-letter {
+            display: inline-block;
+        }
+
+        .hero-sub {
+            display: none;
+        }
+
+        .hero-sub-lines {
+            text-align: center;
+            max-width: 660px;
+        }
+
+        .hero-sub-line {
+            font-size: 1.26rem;
+            color: #1A1A1A;
+            font-weight: 600;
+            line-height: 1.8;
+            text-shadow: 0 1px 6px rgba(255,255,255,0.3);
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            margin: 0 auto;
+        }
+
+        .hero-sub-line1 {
+            border-right: 0.08em solid var(--color-gold);
+            animation:
+                typing-line1 1.75s steps(55, end) 1.75s forwards,
+                blink-caret 0.75s step-end 1.75s infinite,
+                hide-caret 0s 3.5s forwards;
+        }
+
+        .hero-sub-line2 {
+            border-right: 0.08em solid transparent;
+            animation:
+                typing-line2 1.4s steps(45, end) 3.64s forwards,
+                blink-caret 0.75s step-end 3.64s infinite;
+        }
+
+        @keyframes typing-line1 {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes typing-line2 {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--color-gold) }
+        }
+
+        @keyframes hide-caret {
+            to { border-color: transparent; border-right: none; }
+        }
+
+        /* All content after hero scrolls above the fixed bg */
+        .hero ~ section,
+        .hero ~ footer {
+            position: relative;
+            z-index: 1;
+            background: var(--color-bg);
+        }
+
+        .hero ~ section:first-of-type {
+            /* Ensures clean coverage of fixed image */
+            box-shadow: 0 -30px 30px -10px var(--color-bg);
+        }
+
+        /* ═══════ SECTIONS ═══════ */
+        section { padding: 6rem 2rem; }
+
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.25;
+            margin-bottom: 2rem;
+        }
+
+        .section-divider {
+            width: 40px; height: 1px;
+            background: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* ═══════ ABOUT / MISSION ═══════ */
+        #mission {
+            background: var(--color-card-bg);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .mission-text {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            max-width: 720px;
+        }
+
+        /* ═══════ PROGRAMS ═══════ */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-card-bg);
+            transition: all 0.4s ease;
+        }
+
+        .program-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+
+        .program-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .program-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .program-card p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        /* ═══════ FUND CTA ═══════ */
+        .fund-cta-section {
+            background: #0F1B2D !important;
+            color: #fff;
+        }
+
+        .fund-cta-section .section-label { color: rgba(255,255,255,0.5); }
+        .fund-cta-section .section-title { color: #fff; }
+        .fund-cta-section .section-divider { background: var(--color-gold); }
+
+        .fund-cta-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 1rem;
+        }
+
+        .fund-cta-content p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .fund-cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 2px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .fund-cta-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+
+        /* ═══════ TEAM ═══════ */
+        #leadership {
+            background: var(--color-card-bg);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member { text-align: center; }
+
+        .team-placeholder {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-highlight);
+            border: 2px solid var(--color-border);
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-text-light);
+            transition: border-color 0.4s ease;
+        }
+
+        .team-placeholder:hover { border-color: var(--color-gold); }
+
+        .team-advisor-feature {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-card-bg);
+        }
+
+        .team-photo {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.25rem;
+            display: block;
+            filter: grayscale(20%);
+            transition: all 0.4s ease;
+            border: 2px solid var(--color-border);
+        }
+
+        .team-photo:hover { filter: grayscale(0%); border-color: var(--color-gold); }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-role {
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+        }
+
+        .team-degree {
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            opacity: 0.7;
+            margin-top: 0.15rem;
+            line-height: 1.4;
+        }
+
+        .team-linkedin {
+            display: inline-block;
+            margin-top: 0.4rem;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .team-linkedin:hover { color: var(--color-gold); }
+
+        /* ═══════ EVENT PHOTO ═══════ */
+        .event-img-wrap {
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .event-img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-img-caption {
+            padding: 1rem 1.5rem;
+            font-size: 0.78rem;
+            color: var(--color-text-light);
+            background: var(--color-card-bg);
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════ SPEAKERS 3D ORBIT ═══════ */
+        .speakers-orbit-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .speakers-orbit {
+            position: relative;
+            width: 280px;
+            height: 400px;
+            perspective: 1200px;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: orbit-spin 25s linear infinite;
+        }
+
+        .speakers-orbit:hover .orbit-ring {
+            animation-play-state: paused;
+        }
+
+        .speaker-card {
+            position: absolute;
+            width: 260px;
+            left: 50%;
+            top: 50%;
+            margin-left: -130px;
+            margin-top: -190px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: var(--color-card-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .speaker-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+            z-index: 10;
+        }
+
+        /* Position 7 cards in a circle — each rotated around Y axis then pushed out */
+        .speaker-card:nth-child(1) { transform: rotateY(calc(0 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(2) { transform: rotateY(calc(1 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(3) { transform: rotateY(calc(2 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(4) { transform: rotateY(calc(3 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(5) { transform: rotateY(calc(4 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(6) { transform: rotateY(calc(5 * 51.43deg)) translateZ(380px); }
+        .speaker-card:nth-child(7) { transform: rotateY(calc(6 * 51.43deg)) translateZ(380px); }
+
+        @keyframes orbit-spin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .speaker-photo {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            background: var(--color-highlight);
+        }
+
+        .speaker-card-body {
+            padding: 0.85rem 1.1rem 1rem;
+        }
+
+        .speaker-card-body .speaker-name {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .speaker-card-body .speaker-title {
+            font-size: 0.7rem;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        .speaker-linkedin {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.45rem;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+        }
+
+        .speaker-linkedin:hover { color: #0A66C2; }
+
+        .orbit-hint {
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .speakers-orbit { width: 240px; }
+            .speaker-card {
+                width: 220px;
+                margin-left: -110px;
+                margin-top: -170px;
+            }
+            .speaker-card:nth-child(1) { transform: rotateY(calc(0 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(2) { transform: rotateY(calc(1 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(3) { transform: rotateY(calc(2 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(4) { transform: rotateY(calc(3 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(5) { transform: rotateY(calc(4 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(6) { transform: rotateY(calc(5 * 51.43deg)) translateZ(280px); }
+            .speaker-card:nth-child(7) { transform: rotateY(calc(6 * 51.43deg)) translateZ(280px); }
+            .speaker-photo { height: 160px; }
+        }
+
+        /* ═══════ STUDENT PITCHES ═══════ */
+        .pitches-intro {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 680px;
+            margin-bottom: 2.5rem;
+        }
+
+        .pitches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pitch-card {
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            background: var(--color-card-bg);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .pitch-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+        }
+
+        .pitch-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .pitch-ticker {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-gold);
+        }
+
+        .pitch-meta h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .pitch-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
+        .pitch-embed {
+            height: 320px;
+            background: var(--color-highlight);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .pitch-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Hide iframe if src fails, show fallback text */
+        .pitch-embed::after {
+            content: 'PDF Preview — Add pitch file to display';
+            position: absolute;
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+        }
+
+        .pitch-embed {
+            position: relative;
+        }
+
+        .pitch-embed iframe {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pitch-download {
+            display: block;
+            text-align: center;
+            padding: 0.9rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            text-decoration: none;
+            border-top: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .pitch-download:hover {
+            background: var(--color-highlight);
+            color: var(--color-text);
+        }
+
+        /* ═══════ MASONRY GALLERY ═══════ */
+        .masonry-gallery { columns: 3; column-gap: 0.75rem; }
+        .masonry-item { break-inside: avoid; margin-bottom: 0.75rem; border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; }
+        .masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+        .masonry-item:hover img { transform: scale(1.03); }
+        .masonry-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4) 100%); opacity: 0; transition: opacity 0.3s ease; }
+        .masonry-item:hover::after { opacity: 1; }
+        .masonry-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.75rem 1rem; font-size: 0.72rem; color: #fff; z-index: 1; opacity: 0; transform: translateY(8px); transition: all 0.3s ease; }
+        .masonry-item:hover .masonry-caption { opacity: 1; transform: translateY(0); }
+
+
+        @media (max-width: 768px) {
+            .masonry-gallery { columns: 2; }
+        }
+
+        /* ═══════ ALUMNI ═══════ */
+        .alumni-intro {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 680px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ═══════ ALUMNI DIRECTION-AWARE OVERLAY ═══════ */
+        .alumni-logos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .alumni-tile {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .alumni-tile-front {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 2px;
+            padding: 2rem;
+        }
+
+        .alumni-tile-front img {
+            max-height: 200px;
+            max-width: 90%;
+            object-fit: contain;
+            opacity: 1;
+        }
+
+        .alumni-tile-info {
+            width: 100%;
+            height: 100%;
+            padding: 1.75rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 2px;
+            pointer-events: none;
+            background: rgba(184, 151, 58, 0.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .alumni-tile:hover .alumni-tile-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .alumni-tile-info .alumni-back-company {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0.85rem;
+            font-weight: 500;
+        }
+
+        .alumni-tile-info .alumni-back-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.3;
+            color: white;
+        }
+
+        .alumni-tile-info .alumni-back-role {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.15rem;
+        }
+
+        @media (max-width: 900px) {
+            .alumni-logos { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .pitches-grid { grid-template-columns: 1fr; }
+            .alumni-logos { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .alumni-logos { grid-template-columns: 1fr; }
+        }
+
+        /* ═══════ JOIN ═══════ */
+        #join .join-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #join .join-content p {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .join-cta {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--color-accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .join-cta:hover {
+            background: var(--color-text);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ═══════ FOOTER ═══════ */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-social {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-social-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-link:hover { color: var(--color-text); }
+
+        .footer-social-sep {
+            color: var(--color-text-light);
+            margin: 0 0.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.72rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* ═══════ ANIMATIONS ═══════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.hidden {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(250, 250, 248, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+
+            .programs-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .fund-cta-content { flex-direction: column; text-align: center; }
+
+            /* Hero */
+            .hero { min-height: 100vh; padding: 5rem 1.5rem 3rem; }
+    
+        .scroll-indicator { cursor:pointer; position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.4rem; opacity:0; animation:fadeIn 0.8s ease 4s forwards; z-index:2; text-decoration:none; }
+        .scroll-indicator span { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(0,0,0,0.5); }
+        .scroll-chevron { width:20px; height:20px; border-right:1.5px solid rgba(0,0,0,0.5); border-bottom:1.5px solid rgba(0,0,0,0.5); transform:rotate(45deg); animation:chevron-bounce 2s ease-in-out infinite; }
+        @keyframes scroll-pulse { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+        @keyframes chevron-bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+        @keyframes fadeIn { to{opacity:1} }
+
+        .hero-overline { font-size: 0.6rem; }
+            .hero-title-expand { font-size: 2.2rem; flex-wrap: wrap; gap: 0.2em; }
+
+            /* Typewriter — disable on mobile, show static text */
+            .hero-sub-lines { display: none; }
+            .hero-sub {
+                display: block !important;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #1A1A1A;
+                opacity: 0;
+                animation: fadeUp 0.7s ease 2s forwards;
+                white-space: normal;
+                max-width: 90%;
+            }
+
+            /* Speaker orbit — disable 3D, show simple grid */
+            .speakers-orbit { perspective: none; width: 100%; height: auto; }
+            .orbit-ring {
+                animation: none !important;
+                position: static;
+                transform-style: flat;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .speaker-card {
+                position: static !important;
+                transform: none !important;
+                width: 100%;
+                margin: 0;
+            }
+            .orbit-hint { display: none; }
+
+            /* Alumni grid — simple flip on mobile */
+            .alumni-logos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+            .alumni-tile {
+                perspective: 600px;
+                overflow: visible;
+            }
+
+            /* Override all direction-aware animations */
+            .alumni-tile.in-top .alumni-tile-info,
+            .alumni-tile.in-right .alumni-tile-info,
+            .alumni-tile.in-bottom .alumni-tile-info,
+            .alumni-tile.in-left .alumni-tile-info,
+            .alumni-tile.out-top .alumni-tile-info,
+            .alumni-tile.out-right .alumni-tile-info,
+            .alumni-tile.out-bottom .alumni-tile-info,
+            .alumni-tile.out-left .alumni-tile-info {
+                animation: none !important;
+                transform: rotateY(180deg) !important;
+            }
+
+            .alumni-tile-front,
+            .alumni-tile-info {
+                position: absolute;
+                inset: 0;
+                backface-visibility: hidden;
+                transition: transform 0.5s ease;
+                border-radius: 2px;
+            }
+
+            .alumni-tile-front {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--color-bg);
+                border: 1px solid var(--color-border);
+                padding: 1.5rem;
+                transform: rotateY(0deg);
+            }
+
+            .alumni-tile-info {
+                transform: rotateY(180deg) !important;
+                background: rgba(184, 151, 58, 0.92);
+            }
+
+            .alumni-tile.flipped .alumni-tile-front {
+                transform: rotateY(180deg);
+            }
+
+            .alumni-tile.flipped .alumni-tile-info {
+                transform: rotateY(0deg) !important;
+            }
+
+            .masonry-gallery { columns: 2; }
+
+            /* Mission text */
+            .mission-text { font-size: 0.9rem; }
+
+            /* Team advisor */
+            .team-advisor-feature {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid { grid-template-columns: 1fr; }
+            .hero-title-expand { font-size: 1.8rem; }
+            .alumni-logos { grid-template-columns: 1fr; }
+
+            .orbit-ring { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ NAVIGATION ═══════ -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <span class="nav-brand-active">IGI</span>
+                <span class="nav-brand-sep">|</span>
+                <a href="kolami.html" class="nav-brand-inactive">Kol Ami</a>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#pitches">Pitches</a></li>
+                <li><a href="#alumni">Alumni</a></li>
+                <li><a href="#leadership">Team</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#join">Join</a></li>
+            </ul>
+            <div class="nav-social">
+                <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" aria-label="LinkedIn" class="nav-social-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/investment_group_israel/" target="_blank" aria-label="Instagram" class="nav-social-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.668.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════ HERO BACKGROUND ═══════ -->
+    <div class="hero-feature"></div>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <div class="hero-overline">Reichman University · Arison School of Business</div>
+        <h1>Investment Group Israel</h1>
+        <div class="hero-title-expand" id="heroTitle">
+            <span class="hero-word"><span class="hero-letter">I</span><span class="hero-word-hidden">nvestment</span></span>
+            <span class="hero-word"><span class="hero-letter">G</span><span class="hero-word-hidden">roup</span></span>
+            <span class="hero-word"><span class="hero-letter">I</span><span class="hero-word-hidden">srael</span></span>
+        </div>
+        <p class="hero-sub">An international community of students and professionals who believe in the need for a holistic financial education.</p>
+        <div class="hero-sub-lines">
+            <div class="hero-sub-line hero-sub-line1">An international community of students and professionals</div>
+            <div class="hero-sub-line hero-sub-line2">who believe in the need for a holistic financial education.</div>
+        </div>
+    
+        <a href="#mission" class="scroll-indicator"><span>Scroll</span><div class="scroll-chevron"></div></a>
+    </section>
+
+    <!-- ═══════ MISSION ═══════ -->
+    <section id="mission">
+        <div class="section-inner">
+            <div class="section-label reveal">About</div>
+            <h2 class="section-title reveal">Bridging the gap between<br>classroom and market</h2>
+            <div class="section-divider reveal"></div>
+            <p class="mission-text reveal">
+                Founded in 2019 at Reichman University, Investment Group Israel (IGI) is a student-led professional club within the Arison School of Business dedicated to bridging the gap between academic theory and practical market execution. IGI provides students from all academic backgrounds with the opportunity to study the global investment landscape at an institutional level.
+            </p>
+            <p class="mission-text reveal">
+                Members engage directly with high-level practitioners — hedge fund managers, activist investors, and venture capital partners — through private forums and strategic sessions. The academic year culminates in a Year-End Stock Pitch Competition, requiring students to synthesize their training into a high-conviction investment thesis.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════ PROGRAMS ═══════ -->
+    <section id="programs">
+        <div class="section-inner">
+            <div class="section-label reveal">What We Do</div>
+            <h2 class="section-title reveal">Programs & Activities</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="programs-grid">
+                <!-- REPLACE: Update program cards with real programs -->
+                <div class="program-card reveal">
+                    <div class="program-icon">📊</div>
+                    <h3>Training Program</h3>
+                    <p>Multi-week curriculum covering financial statement analysis, valuation methodologies, and portfolio construction for new members.</p>
+                </div>
+                <div class="program-card reveal">
+                    <div class="program-icon">🏆</div>
+                    <h3>Stock Pitch Competitions</h3>
+                    <p>Members develop and present equity research pitches to a panel of industry judges, honing presentation and analytical skills.</p>
+                </div>
+                <div class="program-card reveal">
+                    <div class="program-icon">🎤</div>
+                    <h3>Guest Speakers</h3>
+                    <p>Leading portfolio managers, analysts, and executives from Israel's finance industry share insights and career advice with our members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ GALLERY ═══════ -->
+    <section id="gallery" style="padding: 2rem 2rem 4rem;">
+        <div class="section-inner">
+            <div class="section-label reveal">Life at IGI</div>
+            <h2 class="section-title reveal">Gallery</h2>
+            <div class="section-divider reveal"></div>
+            <div class="masonry-gallery reveal">
+                <div class="masonry-item"><img src="gallery-1.png" alt="Stock pitch"><div class="masonry-caption">Student stock pitch presentation</div></div>
+                <div class="masonry-item"><img src="gallery-2.png" alt="Speaker session"><div class="masonry-caption">Guest speaker session</div></div>
+                <div class="masonry-item"><img src="gallery-3.png" alt="Speaker"><div class="masonry-caption">Industry speaker · Reichman University</div></div>
+                <div class="masonry-item"><img src="gallery-4.png" alt="Guest lecture"><div class="masonry-caption">Guest lecture series</div></div>
+                <div class="masonry-item"><img src="gallery-5.png" alt="Macro research"><div class="masonry-caption">Macro research presentation</div></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ EVENTS ═══════ -->
+    <section id="events">
+        <div class="section-inner">
+            <div class="section-label reveal">Community</div>
+            <h2 class="section-title reveal">Events</h2>
+            <div class="section-divider reveal"></div>
+            <div class="events-empty reveal" style="text-align:center;padding:2.5rem 2rem;border:1px dashed var(--color-border);border-radius:4px;">
+                <p style="color:var(--color-text-light);font-size:0.95rem;margin-bottom:0.5rem;">No upcoming events at this time.</p>
+                <p style="color:var(--color-text-light);font-size:0.8rem;opacity:0.6;margin-bottom:1.5rem;">Follow us on Instagram and LinkedIn for announcements.</p>
+                <a href="events.html" style="display:inline-block;padding:0.75rem 2rem;border:1px solid var(--color-gold);border-radius:2px;color:var(--color-gold);text-decoration:none;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;">View Past Events →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ SPEAKERS ═══════ -->
+    <section id="speakers">
+        <div class="section-inner">
+            <div class="section-label reveal">Industry Access</div>
+            <h2 class="section-title reveal">Past Speakers</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="speakers-orbit-wrap reveal">
+                <div class="speakers-orbit">
+                    <div class="orbit-ring">
+                        <div class="speaker-card">
+                            <img src="speaker-fischer.png" alt="Seth Fischer" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Seth Fischer</div>
+                                <div class="speaker-title">Founder & CIO, Oasis Management · Former PM, Highbridge Capital</div>
+                                <a href="https://www.linkedin.com/in/seth-fischer-ba58186a/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-husain.png" alt="Ahmed Husain" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Ahmed Husain</div>
+                                <div class="speaker-title">Global Head of Family Offices, Neuberger Berman · Former MD, Goldman Sachs</div>
+                                <a href="https://www.linkedin.com/in/ahusain1976/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-shany.png" alt="Gilad Shany" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Gilad Shany</div>
+                                <div class="speaker-title">Founder & Managing Partner, ION Crossover Partners · Former VP, Baron Capital</div>
+                                <a href="https://www.linkedin.com/in/giladshany/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-slobodkin.png" alt="Tal Slobodkin" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Tal Slobodkin</div>
+                                <div class="speaker-title">Managing Partner, StageOne Ventures · Former Goldman Sachs IBD · Talpiot Graduate</div>
+                                <a href="https://www.linkedin.com/in/slobodkin/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-siegel.png" alt="David Siegel" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">David Siegel</div>
+                                <div class="speaker-title">CEO, Israel Tech Mission · Former CEO, Meetup & Investopedia</div>
+                                <a href="https://www.linkedin.com/in/davidmsiegel/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-kleinman.png" alt="Judith Kleinman" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Judith Kleinman</div>
+                                <div class="speaker-title">OurCrowd · Venture Capital & Israeli Tech Ecosystem</div>
+                                <a href="https://www.linkedin.com/in/judith-kleinman-7778376/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                        <div class="speaker-card">
+                            <img src="speaker-salomon.png" alt="Alex Salomon" class="speaker-photo">
+                            <div class="speaker-card-body">
+                                <div class="speaker-name">Alex Salomon</div>
+                                <div class="speaker-title">Co-Founder & Managing Director, IGI · Founder, Better Investments SB</div>
+                                <a href="https://www.linkedin.com/in/alex-salomon/" target="_blank" class="speaker-linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit-hint">Hover to pause</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ STUDENT PITCHES ═══════ -->
+    <section id="pitches">
+        <div class="section-inner">
+            <div class="section-label reveal">Student Work</div>
+            <h2 class="section-title reveal">Stock Pitch Examples</h2>
+            <div class="section-divider reveal"></div>
+            <p class="pitches-intro reveal">Our members develop and present institutional-quality equity research. Below are selected pitches from recent semesters.</p>
+
+            <div class="pitches-grid reveal">
+                <!-- REPLACE: Add real pitch PDFs — name them pitch-TICKER.pdf -->
+                <div class="pitch-card">
+                    <div class="pitch-header">
+                        <div class="pitch-ticker">NU</div>
+                        <div class="pitch-meta">
+                            <h3>Nu Holdings</h3>
+                            <span class="pitch-tag">Fintech · Long · 2025</span>
+                        </div>
+                    </div>
+                    <div class="pitch-embed">
+                        <iframe src="pitch-NU.pdf" title="Nu Holdings Stock Pitch"></iframe>
+                    </div>
+                    <a href="pitch-NU.pdf" class="pitch-download" download>Download PDF →</a>
+                </div>
+
+                <div class="pitch-card">
+                    <div class="pitch-header">
+                        <div class="pitch-ticker">SOFI</div>
+                        <div class="pitch-meta">
+                            <h3>SoFi Technologies</h3>
+                            <span class="pitch-tag">Fintech · Long · 2025</span>
+                        </div>
+                    </div>
+                    <div class="pitch-embed">
+                        <iframe src="pitch-SOFI.pdf" title="SoFi Stock Pitch"></iframe>
+                    </div>
+                    <a href="pitch-SOFI.pdf" class="pitch-download" download>Download PDF →</a>
+                </div>
+
+                <div class="pitch-card">
+                    <div class="pitch-header">
+                        <div class="pitch-ticker">MU</div>
+                        <div class="pitch-meta">
+                            <h3>Micron Technology</h3>
+                            <span class="pitch-tag">Semiconductors · Long · 2025</span>
+                        </div>
+                    </div>
+                    <div class="pitch-embed">
+                        <iframe src="pitch-MU.pdf" title="Micron Stock Pitch"></iframe>
+                    </div>
+                    <a href="pitch-MU.pdf" class="pitch-download" download>Download PDF →</a>
+                </div>
+
+                <div class="pitch-card">
+                    <div class="pitch-header">
+                        <div class="pitch-ticker">RKLB</div>
+                        <div class="pitch-meta">
+                            <h3>Rocket Lab USA</h3>
+                            <span class="pitch-tag">Aerospace · Long · 2025</span>
+                        </div>
+                    </div>
+                    <div class="pitch-embed">
+                        <iframe src="pitch-RKLB.pdf" title="Rocket Lab Stock Pitch"></iframe>
+                    </div>
+                    <a href="pitch-RKLB.pdf" class="pitch-download" download>Download PDF →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ ALUMNI ═══════ -->
+    <section id="alumni" style="background:var(--color-card-bg);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+        <div class="section-inner">
+            <div class="section-label reveal">Where They Are Now</div>
+            <h2 class="section-title reveal">Alumni Network</h2>
+            <div class="section-divider reveal"></div>
+            <p class="alumni-intro reveal">IGI alumni have gone on to build careers at leading financial institutions across Israel and globally.</p>
+
+            <!-- REPLACE: Add real company logos and alumni data -->
+            <div class="alumni-logos reveal" id="alumniGrid">
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-jpmorgan.png" alt="J.P. Morgan"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">J.P. Morgan</div>
+                        <div class="alumni-back-name">Zach Okun</div>
+                        <div class="alumni-back-role">Investment Banking Associate</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-goldmansachs.png" alt="Goldman Sachs"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Goldman Sachs</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Analyst</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-morganstanley.png" alt="Morgan Stanley"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Morgan Stanley</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Associate</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-altshulershaham.png" alt="Altshuler Shaham"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Altshuler Shaham</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Equity Research Analyst</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-ey.png" alt="EY-Parthenon"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">EY-Parthenon</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Strategy Consultant</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-migdal.png" alt="Migdal Insurance"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Migdal Insurance</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Investment Analyst</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-meitav.png" alt="Meitav"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Meitav</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Portfolio Manager</div>
+                    </div>
+                </div>
+                <div class="alumni-tile">
+                    <div class="alumni-tile-front"><img src="logo-deloitte.png" alt="Deloitte"></div>
+                    <div class="alumni-tile-info">
+                        <div class="alumni-back-company">Deloitte</div>
+                        <div class="alumni-back-name">Alumni Name</div>
+                        <div class="alumni-back-role">Consultant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ KOL AMI CTA ═══════ -->
+    <section class="fund-cta-section" style="background:#0F1B2D !important;">
+        <div class="section-inner">
+            <div class="section-label reveal">Flagship Program</div>
+            <h2 class="section-title reveal">Kol Ami Student Managed Fund</h2>
+            <div class="section-divider reveal"></div>
+            <div class="fund-cta-content reveal">
+                <p>After completing a year in the IGI Advanced Track, top-performing members can apply to join Kol Ami — our student-managed shadow portfolio. The Kol Ami Fund returned <strong>+36%</strong> in 2025, outperforming the S&amp;P 500 by over 18 percentage points.</p>
+                <a href="kolami.html" class="fund-cta-btn">View Fund →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ LEADERSHIP ═══════ -->
+    <section id="leadership">
+        <div class="section-inner">
+            <div class="section-label reveal">Leadership</div>
+            <h2 class="section-title reveal">IGI Board</h2>
+            <div class="section-divider reveal"></div>
+
+            <div class="team-advisor-feature reveal" style="margin-top:2rem;">
+                <img src="sandrine.png" alt="Sandrine Bernstein" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid #E8E6E1;flex-shrink:0;">
+                <div style="flex:1;">
+                    <div class="team-name" style="font-size:1.4rem;">Sandrine Bernstein</div>
+                    <div class="team-role" style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#B8973A;margin-bottom:0.75rem;">Senior Advisor</div>
+                    <p style="font-size:0.9rem;color:#6B6B6B;line-height:1.7;margin-bottom:0.75rem;">Wharton graduate and seasoned wealth manager, Sandrine leads Investment Group Israel and advises Kol Ami, bringing decades of experience in asset management, private equity, and financial advisory.</p>
+                    <div style="display:flex;align-items:center;gap:1.5rem;">
+                        <span style="font-size:0.72rem;color:#6B6B6B;opacity:0.7;">Wharton School of Business</span>
+                        <a href="https://www.linkedin.com/in/sandrine-bernstein/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:1.5rem;margin-top:2.5rem;padding-bottom:0.75rem;border-bottom:1px solid #E8E6E1;" class="reveal">Board</div>
+
+            <div class="team-grid reveal">
+                <!-- REPLACE: Add real IGI leadership with photos -->
+                <div class="team-member">
+                    <div class="team-placeholder">IH</div>
+                    <div class="team-name">Illy Hagege</div>
+                    <div class="team-role">President</div>
+                    <a href="https://www.linkedin.com/in/illyhagege/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <div class="team-placeholder">CD</div>
+                    <div class="team-name">Team Member</div>
+                    <div class="team-role">VP Education</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <div class="team-placeholder">EF</div>
+                    <div class="team-name">Team Member</div>
+                    <div class="team-role">VP Operations</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+                <div class="team-member">
+                    <div class="team-placeholder">GH</div>
+                    <div class="team-name">Team Member</div>
+                    <div class="team-role">VP Recruiting</div>
+                    <a href="#" class="team-linkedin">LinkedIn →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ JOIN ═══════ -->
+    <section id="join">
+        <div class="section-inner">
+            <div class="join-content">
+                <div class="section-label reveal">Get Involved</div>
+                <h2 class="section-title reveal">Join IGI</h2>
+                <div class="section-divider reveal" style="margin-left:auto;margin-right:auto;"></div>
+                <p class="reveal">
+                    We recruit new members each semester from all Reichman University programs. No prior finance experience is required — just curiosity and commitment.
+                </p>
+                <!-- REPLACE: Update email or form link -->
+                <a href="/cdn-cgi/l/email-protection#96fff1ffd6e4f3fff5fefbf7f8b8f7f5b8fffa" class="join-cta reveal">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer style="position:relative;z-index:1;background:var(--color-bg);">
+        <div class="footer-brand">Investment Group Israel</div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" class="footer-social-link">LinkedIn</a>
+            <span class="footer-social-sep">·</span>
+            <a href="https://www.instagram.com/investment_group_israel/" target="_blank" class="footer-social-link">Instagram</a>
+        </div>
+        <p class="footer-text">
+            Reichman University · Arison School of Business · Herzliya, Israel<br>
+            © 2026 Investment Group Israel. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+        // IGI → Investment Group Israel expansion
+        setTimeout(() => {
+            document.getElementById('heroTitle').classList.add('expanded');
+        }, 800);
+
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+        const reveals = document.querySelectorAll('.reveal');
+        // Hide elements via JS so content is visible if JS fails
+        reveals.forEach(el => el.classList.add('hidden'));
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('hidden'); e.target.classList.add('visible'); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) {
+                    const top = t.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight - 20;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        
+        // ═══════ ALUMNI DIRECTION-AWARE HOVER ═══════
+        (function() {
+            const tiles = document.querySelectorAll('.alumni-tile');
+            const isTouchDevice = 'ontouchstart' in window;
+
+            function getDirection(e, el) {
+                const rect = el.getBoundingClientRect();
+                const x = (e.clientX || 0) - rect.left - rect.width / 2;
+                const y = (e.clientY || 0) - rect.top - rect.height / 2;
+                const d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
+                return ['top', 'right', 'bottom', 'left'][d];
+            }
+
+            const slideMap = {
+                top:    { in: 'translateY(-100%)', out: 'translateY(-100%)' },
+                right:  { in: 'translateX(100%)',  out: 'translateX(100%)' },
+                bottom: { in: 'translateY(100%)',  out: 'translateY(100%)' },
+                left:   { in: 'translateX(-100%)', out: 'translateX(-100%)' }
+            };
+
+            if (isTouchDevice) {
+                tiles.forEach(tile => {
+                    tile.addEventListener('click', function() {
+                        this.classList.toggle('flipped');
+                    });
+                });
+            } else {
+                tiles.forEach(tile => {
+                    const info = tile.querySelector('.alumni-tile-info');
+
+                    tile.addEventListener('mouseenter', function(e) {
+                        const dir = getDirection(e, this);
+                        info.style.transition = 'none';
+                        info.style.transform = slideMap[dir].in;
+                        info.style.opacity = '0';
+                        // Force reflow
+                        info.offsetHeight;
+                        info.style.transition = 'all 0.3s ease';
+                        info.style.transform = 'translate(0, 0)';
+                        info.style.opacity = '1';
+                    });
+
+                    tile.addEventListener('mouseleave', function(e) {
+                        const dir = getDirection(e, this);
+                        info.style.transition = 'all 0.3s ease';
+                        info.style.transform = slideMap[dir].out;
+                        info.style.opacity = '0';
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
