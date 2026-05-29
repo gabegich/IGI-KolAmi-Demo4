@@ -19,6 +19,8 @@
     <meta name="twitter:title" content="Investment Group Israel & Kol Ami Fund | Reichman University">
     <meta name="twitter:description" content="Investment Group Israel (IGI) and the Kol Ami Fund at Reichman University's Arison School of Business — a student-led community advancing holistic financial education and institutional-quality equity research.">
     <meta name="twitter:image" content="https://investmentgroupisrael.com/index-hero.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -257,12 +259,14 @@
             .subtitle { font-size: 0.9rem; padding: 0 1.5rem; }
             .footer-line { font-size: 0.6rem; }
         }
+    
+        @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}}
     </style>
 </head>
 <body>
     <div class="hero-bg"></div>
     <a href="https://www.runi.ac.il/en" target="_blank" class="reichman-link">
-        <img src="/Reichman_Arison_Logo.png" alt="Reichman University">
+        <img loading="lazy" src="/Reichman_Arison_Logo.png" alt="Reichman University">
     </a>
     <div class="overline">Reichman University · Arison School of Business</div>
     <h1><span class="igi-blue">Investment Group Israel</span><br>& <em>Kol Ami</em> Fund</h1>
@@ -290,6 +294,6 @@
         </a>
     </div>
 
-    <div class="footer-line">Est. 2019 · Herzliya, Israel</div>
+    <div class="footer-line"><span class="site-disclaimer" style="display:block;max-width:560px;margin:0 auto 0.6rem;opacity:0.85;line-height:1.6;">Kol Ami is a simulated, student-managed shadow portfolio for educational purposes — not investment advice.</span>Est. 2019 · Herzliya, Israel</div>
 </body>
 </html>
