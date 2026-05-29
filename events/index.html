@@ -19,6 +19,8 @@
     <meta name="twitter:title" content="Events | Investment Group Israel">
     <meta name="twitter:description" content="Events, guest speakers, and workshops hosted by Investment Group Israel at Reichman University.">
     <meta name="twitter:image" content="https://investmentgroupisrael.com/index-hero.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -288,6 +290,10 @@
             .nav-toggle { display: block; }
             .past-events-grid { grid-template-columns: 1fr; }
         }
+    
+        @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}}
+    
+        .nav-links a.active{color:var(--color-gold);}
     </style>
 </head>
 <body>
@@ -328,7 +334,7 @@
         <div class="past-events-grid">
 
             <div class="event-card">
-                <img src="/event-finance-internship.png" alt="How to Land Your Finance Internship">
+                <img loading="lazy" src="/event-finance-internship.png" alt="How to Land Your Finance Internship">
                 <div class="event-card-body">
                     <div class="event-date">December 23, 2025 · 19:15</div>
                     <div class="event-title">How to Land Your Finance Internship</div>
@@ -350,6 +356,7 @@
             Reichman University · Arison School of Business · Herzliya, Israel<br>
             © 2026 Investment Group Israel. All rights reserved.
         </p>
+            <p class="site-disclaimer" style="max-width:780px;margin:1.75rem auto 0;padding:0 2rem;font-size:0.7rem;line-height:1.7;color:var(--color-text-light);text-align:center;opacity:0.8;">Kol Ami is a simulated, student-managed shadow portfolio maintained for educational purposes. Nothing on this site constitutes investment advice or an offer to buy or sell any security. Simulated past performance is not indicative of future results.</p>
     </footer>
 
     <script>
@@ -359,5 +366,14 @@
         const navLinks = document.getElementById('navLinks');
         navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
     </script>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var map=links.map(function(a){var el=document.getElementById(a.getAttribute('href').slice(1));return el?{a:a,el:el}:null;}).filter(Boolean);
+  if(!map.length||!('IntersectionObserver' in window)) return;
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){map.forEach(function(m){m.a.classList.toggle('active',m.el===e.target);});}});},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+  map.forEach(function(m){obs.observe(m.el);});
+})();
+</script>
 </body>
 </html>
