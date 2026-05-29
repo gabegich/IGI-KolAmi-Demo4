@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Group Israel | Reichman University</title>
+    <meta name="description" content="Investment Group Israel (IGI) is a student-led investment community at Reichman University offering financial education, stock-pitch competitions, and a guest-speaker series.">
+    <link rel="canonical" href="https://investmentgroupisrael.com/igi/">
+    <meta name="theme-color" content="#0F1B2D">
+    <link rel="icon" type="image/png" href="/IGI_Logo.png">
+    <link rel="apple-touch-icon" href="/IGI_Logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Investment Group Israel">
+    <meta property="og:title" content="Investment Group Israel | Reichman University">
+    <meta property="og:description" content="Investment Group Israel (IGI) is a student-led investment community at Reichman University offering financial education, stock-pitch competitions, and a guest-speaker series.">
+    <meta property="og:url" content="https://investmentgroupisrael.com/igi/">
+    <meta property="og:image" content="https://investmentgroupisrael.com/igi-hero.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Investment Group Israel | Reichman University">
+    <meta name="twitter:description" content="Investment Group Israel (IGI) is a student-led investment community at Reichman University offering financial education, stock-pitch competitions, and a guest-speaker series.">
+    <meta name="twitter:image" content="https://investmentgroupisrael.com/igi-hero.png">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1391,9 +1406,9 @@
                         </div>
                     </div>
                     <div class="pitch-embed">
-                        <iframe src="/pitch-SOFI.pdf" title="SoFi Stock Pitch"></iframe>
+                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--color-text-light);font-size:0.85rem;text-align:center;padding:1rem;">Pitch deck coming soon</div>
                     </div>
-                    <a href="/pitch-SOFI.pdf" class="pitch-download" download>Download PDF →</a>
+                    <span class="pitch-download" style="opacity:0.45;cursor:default;">Coming soon</span>
                 </div>
 
                 <div class="pitch-card">
@@ -1405,9 +1420,9 @@
                         </div>
                     </div>
                     <div class="pitch-embed">
-                        <iframe src="/pitch-MU.pdf" title="Micron Stock Pitch"></iframe>
+                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--color-text-light);font-size:0.85rem;text-align:center;padding:1rem;">Pitch deck coming soon</div>
                     </div>
-                    <a href="/pitch-MU.pdf" class="pitch-download" download>Download PDF →</a>
+                    <span class="pitch-download" style="opacity:0.45;cursor:default;">Coming soon</span>
                 </div>
 
                 <div class="pitch-card">
@@ -1419,9 +1434,9 @@
                         </div>
                     </div>
                     <div class="pitch-embed">
-                        <iframe src="/pitch-RKLB.pdf" title="Rocket Lab Stock Pitch"></iframe>
+                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--color-text-light);font-size:0.85rem;text-align:center;padding:1rem;">Pitch deck coming soon</div>
                     </div>
-                    <a href="/pitch-RKLB.pdf" class="pitch-download" download>Download PDF →</a>
+                    <span class="pitch-download" style="opacity:0.45;cursor:default;">Coming soon</span>
                 </div>
             </div>
         </div>
@@ -1548,24 +1563,6 @@
                     <div class="team-role">President</div>
                     <a href="https://www.linkedin.com/in/illyhagege/" target="_blank" class="team-linkedin">LinkedIn →</a>
                 </div>
-                <div class="team-member">
-                    <div class="team-placeholder">CD</div>
-                    <div class="team-name">Team Member</div>
-                    <div class="team-role">VP Education</div>
-                    <a href="#" class="team-linkedin">LinkedIn →</a>
-                </div>
-                <div class="team-member">
-                    <div class="team-placeholder">EF</div>
-                    <div class="team-name">Team Member</div>
-                    <div class="team-role">VP Operations</div>
-                    <a href="#" class="team-linkedin">LinkedIn →</a>
-                </div>
-                <div class="team-member">
-                    <div class="team-placeholder">GH</div>
-                    <div class="team-name">Team Member</div>
-                    <div class="team-role">VP Recruiting</div>
-                    <a href="#" class="team-linkedin">LinkedIn →</a>
-                </div>
             </div>
         </div>
     </section>
@@ -1686,5 +1683,25 @@
             }
         })();
     </script>
+<script>
+(function(){
+  function initials(s){return (s||'').trim().split(/\s+/).slice(0,2).map(function(w){return w[0]||'';}).join('').toUpperCase();}
+  function handle(img){
+    if(img.dataset.fbDone) return; img.dataset.fbDone='1';
+    var alt=img.getAttribute('alt')||'', rep;
+    if(img.className.indexOf('team-photo')>-1||img.className.indexOf('speaker-photo')>-1){
+      rep=document.createElement('div'); rep.className='team-placeholder'; rep.textContent=initials(alt);
+    } else {
+      rep=document.createElement('span'); rep.textContent=alt;
+      rep.style.cssText='font-family:var(--font-display);font-size:1rem;color:var(--color-text-light);';
+    }
+    if(img.parentNode) img.parentNode.replaceChild(rep,img);
+  }
+  document.querySelectorAll('img').forEach(function(img){
+    if(img.complete && img.naturalWidth===0) handle(img);
+    img.addEventListener('error',function(){handle(img);});
+  });
+})();
+</script>
 </body>
 </html>
