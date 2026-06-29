@@ -195,6 +195,13 @@
             object-fit: cover;
         }
 
+        .event-card img.poster {
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            background: var(--color-accent);
+        }
+
         .event-card-body {
             padding: 1.5rem;
         }
@@ -344,7 +351,7 @@
         <div class="past-events-grid">
 
             <div class="event-card">
-                <img loading="lazy" src="/event-neil-corney.png" alt="Special Event — Neil Corney, CEO Citi Israel">
+                <img loading="lazy" class="poster" src="/event-neil-corney.jpg" alt="Special Event — Neil Corney, CEO Citi Israel">
                 <div class="event-card-body">
                     <div class="event-date">June 23, 2026 · 19:15 · Reichman University</div>
                     <div class="event-title">Special Event — Neil Corney</div>
