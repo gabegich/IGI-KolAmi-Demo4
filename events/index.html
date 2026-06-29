@@ -344,6 +344,19 @@
         <div class="past-events-grid">
 
             <div class="event-card">
+                <img loading="lazy" src="/event-neil-corney.png" alt="Special Event — Neil Corney, CEO Citi Israel">
+                <div class="event-card-body">
+                    <div class="event-date">June 23, 2026 · 19:15 · Reichman University</div>
+                    <div class="event-title">Special Event — Neil Corney</div>
+                    <div class="event-speakers">Neil Corney — CEO Citi Israel and Head of Banking</div>
+                    <div class="event-details">
+                        A special evening with Neil Corney, CEO of Citi Israel and Head of Banking, sharing insights on banking, markets, and building a career in finance. Hosted in partnership with Citibank.
+                    </div>
+                    <span class="event-tag past">Past Event</span>
+                </div>
+            </div>
+
+            <div class="event-card">
                 <img loading="lazy" src="/event-finance-internship.png" alt="How to Land Your Finance Internship">
                 <div class="event-card-body">
                     <div class="event-date">December 23, 2025 · 19:15</div>
@@ -383,6 +396,20 @@
   if(!map.length||!('IntersectionObserver' in window)) return;
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){map.forEach(function(m){m.a.classList.toggle('active',m.el===e.target);});}});},{rootMargin:'-45% 0px -50% 0px',threshold:0});
   map.forEach(function(m){obs.observe(m.el);});
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.event-card img').forEach(function(img){
+    function handle(){ if(img.dataset.fb) return; img.dataset.fb='1';
+      var d=document.createElement('div');
+      d.style.cssText='width:100%;height:240px;display:flex;align-items:center;justify-content:center;background:var(--color-accent,#0F1B2D);color:#fff;font-family:var(--font-display),serif;font-size:1.1rem;text-align:center;padding:1.5rem;';
+      d.textContent=img.getAttribute('alt')||'Event';
+      if(img.parentNode) img.parentNode.replaceChild(d,img);
+    }
+    if(img.complete && img.naturalWidth===0) handle();
+    img.addEventListener('error',handle);
+  });
 })();
 </script>
 </body>
