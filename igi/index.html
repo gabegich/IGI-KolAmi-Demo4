@@ -667,6 +667,7 @@
                 <li><a href="#alumni">Alumni</a></li>
                 <li><a href="#leadership">Board</a></li>
                 <li><a href="#events">Events</a></li>
+                <li><a href="#linkedin-feed">LinkedIn</a></li>
                 <li><a href="#join">Join</a></li>
             </ul>
             <div class="nav-social">
@@ -765,6 +766,29 @@
                 <small>Follow us on Instagram and LinkedIn for announcements.</small><br>
                 <a href="/events/" class="notice-link">View Past Events →</a>
             </div>
+        </div>
+    </section>
+
+    <!-- ═══════ LINKEDIN FEED ═══════ -->
+    <!--
+      LinkedIn does not offer a native "live feed" embed (only single-post
+      embeds), so this section uses Elfsight's free LinkedIn Feed widget to
+      pull posts from our company page automatically. To activate it:
+        1. Go to https://elfsight.com/linkedin-feed-widget/ and sign up (free tier available).
+        2. Create a widget, connect it to https://www.linkedin.com/company/investment-group-israel/
+        3. Copy the Widget ID Elfsight gives you and replace WIDGET-ID-HERE below (in both the div class and the script src is not needed, just the class).
+        4. The widget script only needs to be included once per page (already added below).
+    -->
+    <section id="linkedin-feed">
+        <div class="section-inner">
+            <div class="section-label reveal">Stay Connected</div>
+            <h2 class="section-title reveal">Latest from LinkedIn</h2>
+            <div class="section-divider reveal"></div>
+            <div class="reveal elfsight-app-WIDGET-ID-HERE" data-elfsight-app-lazy></div>
+            <script src="https://elfsight.com/platform.js" async></script>
+            <p style="text-align:center;margin-top:1rem;">
+                <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" class="notice-link">Follow us on LinkedIn →</a>
+            </p>
         </div>
     </section>
 
