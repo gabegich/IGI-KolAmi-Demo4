@@ -48,6 +48,25 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ═══════ SKIP LINK ═══════ */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 1rem;
+            z-index: 200;
+            background: var(--color-accent);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
         /* ═══════ NAVIGATION ═══════ */
         nav {
             position: fixed;
@@ -171,10 +190,26 @@
             height: 100vh;
             background: url('/kolami-hero.png') center center no-repeat;
             background-size: cover;
+            transform: scale(1.1);
+            will-change: transform;
         }
 
         .hero-feature::after {
             display: none;
+        }
+
+        /* ═══════ SCROLL PROGRESS ═══════ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--color-gold);
+            transform: scaleX(0);
+            transform-origin: 0 0;
+            z-index: 150;
+            will-change: transform;
         }
 
         /* ═══════ HERO ═══════ */
@@ -227,12 +262,6 @@
             animation: fadeUp 0.7s ease 0.2s forwards;
             text-shadow: 0 1px 8px rgba(0,0,0,0.2);
         }
-
-        .hero h1 {
-            display: none;
-        }
-
-        .hero h1 em { font-style: italic; font-weight: 400; }
 
         /* Earnings beat heading */
         .earnings-heading {
@@ -443,6 +472,12 @@
         .governance-icon {
             font-size: 1.5rem;
             margin-bottom: 0.75rem;
+            display: inline-block;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .governance-card:hover .governance-icon {
+            transform: scale(1.18) rotate(-4deg);
         }
 
         .governance-card h3 {
@@ -562,6 +597,7 @@
 
         .metric:hover {
             background: rgba(255,255,255,0.04);
+            transform: translateY(-4px);
         }
 
         .metric-value {
@@ -613,6 +649,11 @@
         .report-inline-btn:hover {
             background: var(--color-gold);
             color: #0F1B2D;
+        }
+
+        .file-hint {
+            opacity: 0.6;
+            font-size: 0.9em;
         }
 
         /* ═══════ ANIMATED CHART ═══════ */
@@ -892,6 +933,12 @@
             color: var(--color-gold);
             min-width: 70px;
             padding-top: 0.15rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .analysis-card:hover .analysis-ticker {
+            transform: scale(1.12);
         }
 
         .analysis-body h3 {
@@ -1044,10 +1091,10 @@
             font-family: var(--font-display);
             font-size: 1.4rem;
             color: var(--color-text-light);
-            transition: border-color 0.4s ease;
+            transition: all 0.4s ease;
         }
 
-        .team-placeholder:hover { border-color: var(--color-gold); }
+        .team-placeholder:hover { border-color: var(--color-gold); transform: translateY(-4px); }
 
         .team-photo {
             width: 130px; height: 130px;
@@ -1060,7 +1107,7 @@
             border: 2px solid var(--color-border);
         }
 
-        .team-photo:hover { filter: grayscale(0%); border-color: var(--color-gold); }
+        .team-photo:hover { filter: grayscale(0%); border-color: var(--color-gold); transform: translateY(-4px); }
 
         .team-name {
             font-family: var(--font-display);
@@ -1178,54 +1225,6 @@
             height: 150px;
             font-size: 1.6rem;
         }
-
-        /* ═══════ ANNUAL REPORT ═══════ */
-        #report {
-            background: var(--color-accent);
-            color: #fff;
-        }
-
-        #report .section-label { color: rgba(255,255,255,0.5); }
-        #report .section-title { color: #fff; }
-        #report .section-divider { background: var(--color-gold); }
-
-        .report-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            margin-top: 1rem;
-        }
-
-        .report-description {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            flex: 1;
-        }
-
-        .report-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2.5rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 2px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .report-download:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--color-gold);
-            color: var(--color-gold);
-        }
-
-        .report-download svg { width: 16px; height: 16px; }
 
         /* ═══════ IGI CTA ═══════ */
         #igi-cta {
@@ -1393,9 +1392,6 @@
             /* Analysis */
             .analysis-grid { grid-template-columns: 1fr; }
 
-            /* Report */
-            .report-content { flex-direction: column; text-align: center; }
-
             /* Transactions */
             .transactions-wrap { overflow-x: auto; }
         }
@@ -1425,6 +1421,8 @@
 </head>
 <body>
 
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <!-- ═══════ NAVIGATION ═══════ -->
     <nav id="navbar">
         <div class="nav-inner">
@@ -1439,33 +1437,36 @@
                 <li><a href="#holdings">Holdings</a></li>
                 <li><a href="/research/">Analysis</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="#report">Report</a></li>
+                <li><a href="/Kol-Ami-Annual-Report-2025.pdf" target="_blank" rel="noopener">Report</a></li>
             </ul>
             <div class="nav-social">
-                <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" aria-label="LinkedIn" class="nav-social-icon">
+                <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" rel="noopener" aria-label="LinkedIn" class="nav-social-icon">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/investment_group_israel/" target="_blank" aria-label="Instagram" class="nav-social-icon">
+                <a href="https://www.instagram.com/investment_group_israel/" target="_blank" rel="noopener" aria-label="Instagram" class="nav-social-icon">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.668.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 </a>
             </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- ═══════ HERO BACKGROUND ═══════ -->
     <div class="hero-feature"></div>
+
+    <main id="main-content">
 
     <!-- ═══════ HERO ═══════ -->
     <section class="hero">
         <div class="hero-glass">
             <div class="hero-overline">Investment Group Israel · Student Managed Fund</div>
-            <h1>The <em>Kol Ami</em> Fund</h1>
-            <div class="earnings-heading" id="earningsHeading">
-                <span class="earn-static">The&nbsp;</span><span class="earn-beat" id="earnBeat"><span class="earn-pct">+36%</span>Kol Ami</span><span class="earn-static">&nbsp;Fund</span>
-            </div>
+            <h1 class="earnings-heading" id="earningsHeading" aria-label="The Kol Ami Fund">
+                <span aria-hidden="true"><span class="earn-static">The&nbsp;</span><span class="earn-beat" id="earnBeat"><span class="earn-pct">+36%</span>Kol Ami</span><span class="earn-static">&nbsp;Fund</span></span>
+            </h1>
             <p class="hero-sub" id="heroSub">
                 A student-managed equity portfolio focused on global growth opportunities, delivering institutional-quality research and risk management.
             </p>
@@ -1582,8 +1583,8 @@
             </p>
 
             <div class="report-inline reveal" style="text-align:center; margin-top:2rem;">
-                <a href="/Kol-Ami-Annual-Report-2025.pdf" target="_blank" class="report-inline-btn">
-                    View Full 2025 Report
+                <a href="/Kol-Ami-Annual-Report-2025.pdf" target="_blank" rel="noopener" class="report-inline-btn">
+                    View Full 2025 Report <span class="file-hint">(PDF, 19&nbsp;MB)</span>
                 </a>
             </div>
         </div>
@@ -1636,7 +1637,7 @@
             </div>
 
             <div class="holdings-cta reveal" style="text-align:center; margin-top:2.5rem;">
-                <a href="/Kol-Ami-Holdings-2026.pdf" class="holdings-download" target="_blank">
+                <a href="/Kol-Ami-Holdings-2026.pdf" class="holdings-download" target="_blank" rel="noopener">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:15px;height:15px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                     </svg>
@@ -1719,22 +1720,22 @@
 
             <div class="governance-grid reveal">
                 <div class="governance-card">
-                    <div class="governance-icon">⚖️</div>
+                    <div class="governance-icon" aria-hidden="true">⚖️</div>
                     <h3>Decision-Making</h3>
                     <p>The portfolio is managed by an Investment Committee of 12–15 members, all alumni of IGI. All decisions to open or close positions require a simple majority vote following a formal debate of the investment thesis.</p>
                 </div>
                 <div class="governance-card">
-                    <div class="governance-icon">🔄</div>
+                    <div class="governance-icon" aria-hidden="true">🔄</div>
                     <h3>Active Review Cycle</h3>
                     <p>The committee meets bi-weekly to audit current holdings, review real-world market data, and adjust positions based on new macroeconomic developments.</p>
                 </div>
                 <div class="governance-card">
-                    <div class="governance-icon">🛡️</div>
+                    <div class="governance-icon" aria-hidden="true">🛡️</div>
                     <h3>Advisory Oversight</h3>
                     <p>The committee is advised by Sandrine Bernstein, a Wharton graduate and seasoned wealth manager. She provides expert guidance on position sizing and risk management, and maintains veto authority to ensure strict adherence to risk parameters.</p>
                 </div>
                 <div class="governance-card">
-                    <div class="governance-icon">📊</div>
+                    <div class="governance-icon" aria-hidden="true">📊</div>
                     <h3>Operational Framework</h3>
                     <p>The portfolio applies fundamental research to real-world data as a high-fidelity simulation. This shadow portfolio structure serves as a specialized incubator to validate the student-managed investment fund model, utilizing a diverse team of international students.</p>
                 </div>
@@ -1763,14 +1764,14 @@
             <!-- Senior Advisor -->
             <div class="team-section-label reveal">Senior Advisor</div>
             <div class="team-advisor-feature reveal">
-                <img loading="lazy" src="/sandrine.png" alt="Sandrine Bernstein" class="advisor-photo">
+                <img loading="lazy" src="/sandrine.png" alt="Sandrine Bernstein" width="120" height="120" class="advisor-photo">
                 <div class="advisor-info">
                     <div class="team-name">Sandrine Bernstein</div>
                     <div class="team-role">Senior Advisor</div>
                     <p class="advisor-bio">Wharton graduate and seasoned wealth manager, Sandrine leads Investment Group Israel and advises Kol Ami, bringing decades of experience in asset management, private equity, and financial advisory.</p>
                     <div class="advisor-links">
                         <span class="team-degree">Wharton School of Business</span>
-                        <a href="https://www.linkedin.com/in/sandrine-bernstein/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                        <a href="https://www.linkedin.com/in/sandrine-bernstein/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                     </div>
                 </div>
             </div>
@@ -1778,121 +1779,121 @@
             <!-- Fund Team -->
             <div class="team-grid reveal">
                 <div class="team-member">
-                    <img loading="lazy" src="/gabriel.png" alt="Gabriel Gichtin" class="team-photo">
+                    <img loading="lazy" src="/gabriel.png" alt="Gabriel Gichtin" width="130" height="130" class="team-photo">
                     <div class="team-name">Gabriel Gichtin</div>
                     <div class="team-role">Head of Portfolio</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/gabriel-gichtin-7a7310206/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/gabriel-gichtin-7a7310206/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/illy.png" alt="Illy Hagege" class="team-photo">
+                    <img loading="lazy" src="/illy.png" alt="Illy Hagege" width="130" height="130" class="team-photo">
                     <div class="team-name">Illy Hagege</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/illyhagege/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/illyhagege/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/zvi.png" alt="Zvi Fermaglich" class="team-photo">
+                    <img loading="lazy" src="/zvi.png" alt="Zvi Fermaglich" width="130" height="130" class="team-photo">
                     <div class="team-name">Zvi Fermaglich</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Government & Diplomacy '26</div>
-                    <a href="https://www.linkedin.com/in/zvi-fermaglich/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/zvi-fermaglich/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/sammuel.png" alt="Sammuel Roqueti-Mauch" class="team-photo">
+                    <img loading="lazy" src="/sammuel.png" alt="Sammuel Roqueti-Mauch" width="130" height="130" class="team-photo">
                     <div class="team-name">Sammuel Roqueti-Mauch</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Data Science & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/sammuel-mauch/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/sammuel-mauch/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/iakov.png" alt="Iakov Vainshtein" class="team-photo">
+                    <img loading="lazy" src="/iakov.png" alt="Iakov Vainshtein" width="130" height="130" class="team-photo">
                     <div class="team-name">Iakov Vainshtein</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/iakov-vainshtein/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/iakov-vainshtein/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/jens.png" alt="Jens Dittberner" class="team-photo">
+                    <img loading="lazy" src="/jens.png" alt="Jens Dittberner" width="130" height="130" class="team-photo">
                     <div class="team-name">Jens Dittberner</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/jens-dittberner/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/jens-dittberner/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/yoel.png" alt="Yoel Salamon" class="team-photo">
+                    <img loading="lazy" src="/yoel.png" alt="Yoel Salamon" width="130" height="130" class="team-photo">
                     <div class="team-name">Yoel Salamon</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/yoel-salamon/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/yoel-salamon/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/leo.png" alt="Leo Sandler" class="team-photo">
+                    <img loading="lazy" src="/leo.png" alt="Leo Sandler" width="130" height="130" class="team-photo">
                     <div class="team-name">Leo Sandler</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Data Science & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/leo-sandler-5435612a8/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/leo-sandler-5435612a8/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/sammy.png" alt="Sammy Balsam" class="team-photo">
+                    <img loading="lazy" src="/sammy.png" alt="Sammy Balsam" width="130" height="130" class="team-photo">
                     <div class="team-name">Sammy Balsam</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/alberto.png" alt="Alberto Aronson" class="team-photo">
+                    <img loading="lazy" src="/alberto.png" alt="Alberto Aronson" width="130" height="130" class="team-photo">
                     <div class="team-name">Alberto Aronson</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business & Economics '26</div>
-                    <a href="https://www.linkedin.com/in/alberto-aronson/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/alberto-aronson/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/neriel.png" alt="Neriel Friedberg" class="team-photo">
+                    <img loading="lazy" src="/neriel.png" alt="Neriel Friedberg" width="130" height="130" class="team-photo">
                     <div class="team-name">Neriel Friedberg</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business '27</div>
-                    <a href="https://www.linkedin.com/in/neriel-friedberg/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/neriel-friedberg/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/jonathan.png" alt="Jonathan Bachrach" class="team-photo">
+                    <img loading="lazy" src="/jonathan.png" alt="Jonathan Bachrach" width="130" height="130" class="team-photo">
                     <div class="team-name">Jonathan Bachrach</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business '26</div>
-                    <a href="https://www.linkedin.com/in/jonathan-bachrach/?locale=en" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/jonathan-bachrach/?locale=en" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/ariel.png" alt="Ariel Derovan" class="team-photo">
+                    <img loading="lazy" src="/ariel.png" alt="Ariel Derovan" width="130" height="130" class="team-photo">
                     <div class="team-name">Ariel Derovan</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business, Economics & Accounting '27</div>
-                    <a href="https://www.linkedin.com/in/ariel-derovan-/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/ariel-derovan-/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/johnny.png" alt="Johnny Crocker" class="team-photo">
+                    <img loading="lazy" src="/johnny.png" alt="Johnny Crocker" width="130" height="130" class="team-photo">
                     <div class="team-name">Johnny Crocker</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business '27</div>
-                    <a href="https://www.linkedin.com/in/johnnycrocker/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/johnnycrocker/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/yoni.png" alt="Yoni Chajmovic" class="team-photo">
+                    <img loading="lazy" src="/yoni.png" alt="Yoni Chajmovic" width="130" height="130" class="team-photo">
                     <div class="team-name">Yoni Chajmovic</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business '27</div>
-                    <a href="https://www.linkedin.com/in/yoni-chajmovic/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/yoni-chajmovic/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/daniil.png" alt="Daniil Lyashchenko" class="team-photo">
+                    <div class="team-placeholder" role="img" aria-label="Daniil Lyashchenko">DL</div>
                     <div class="team-name">Daniil Lyashchenko</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Business '27</div>
                 </div>
                 <div class="team-member">
-                    <img loading="lazy" src="/samuel.png" alt="Samuel Klein" class="team-photo">
+                    <img loading="lazy" src="/samuel.png" alt="Samuel Klein" width="130" height="130" class="team-photo">
                     <div class="team-name">Samuel Klein</div>
                     <div class="team-role">Analyst</div>
                     <div class="team-degree">Accounting & Business '27</div>
-                    <a href="https://www.linkedin.com/in/samuel-klein-/" target="_blank" class="team-linkedin">LinkedIn →</a>
+                    <a href="https://www.linkedin.com/in/samuel-klein-/" target="_blank" rel="noopener" class="team-linkedin">LinkedIn →</a>
                 </div>
             </div>
         </div>
@@ -1913,15 +1914,17 @@
         </div>
     </section>
 
+    </main>
+
     <footer style="position:relative;z-index:1;background:var(--color-bg);">
         <div class="footer-brand">Kol Ami Fund · Investment Group Israel</div>
         <div class="footer-contact">
             <a href="/cdn-cgi/l/email-protection#e78e808ea795828e848f8a8689c98684c98e8b"><span class="__cf_email__" data-cfemail="a8c1cfc1e8dacdc1cbc0c5c9c686c9cb86c1c4">[email&#160;protected]</span></a>
         </div>
         <div class="footer-social">
-            <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" class="footer-social-link">LinkedIn</a>
+            <a href="https://www.linkedin.com/company/investment-group-israel/" target="_blank" rel="noopener" class="footer-social-link">LinkedIn</a>
             <span class="footer-social-sep">·</span>
-            <a href="https://www.instagram.com/investment_group_israel/" target="_blank" class="footer-social-link">Instagram</a>
+            <a href="https://www.instagram.com/investment_group_israel/" target="_blank" rel="noopener" class="footer-social-link">Instagram</a>
         </div>
         <p class="footer-text">
             Reichman University · Arison School of Business · Herzliya, Israel<br>
@@ -1933,6 +1936,37 @@
     <script>
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+        // ═══════ PARALLAX HERO + SCROLL PROGRESS ═══════
+        (function() {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const heroFeature = document.querySelector('.hero-feature');
+            const progress = document.getElementById('scrollProgress');
+            let ticking = false;
+
+            function update() {
+                const scrollY = window.scrollY;
+                if (!reduceMotion && heroFeature) {
+                    const offset = Math.min(scrollY * 0.25, 160);
+                    heroFeature.style.transform = `translate3d(0, ${offset}px, 0) scale(1.1)`;
+                }
+                if (progress) {
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const fraction = docHeight > 0 ? Math.min(scrollY / docHeight, 1) : 0;
+                    progress.style.transform = `scaleX(${fraction})`;
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            update();
+        })();
 
         // ═══════ EARNINGS BEAT ANIMATION ═══════
         (function() {
@@ -1976,8 +2010,14 @@
 
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
-        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+        navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open);
+        });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }));
 
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => el.classList.add('hidden'));
