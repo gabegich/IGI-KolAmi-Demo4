@@ -100,6 +100,7 @@
 
         .nav-links { display: flex; gap: 2.1rem; list-style: none; }
         .nav-links a {
+            position: relative;
             text-decoration: none;
             color: var(--soft);
             font-family: var(--font-body);
@@ -108,10 +109,23 @@
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
+        .nav-links a::after {
+            content: '';
+            position: absolute; left: 0; right: 100%; bottom: -5px;
+            height: 1px; background: var(--foil);
+            transition: right 0.3s ease;
+        }
         .nav-links a:hover, .nav-links a.active { color: var(--foil); }
+        .nav-links a:hover::after, .nav-links a.active::after { right: 0; }
 
         .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-        .nav-toggle span { display: block; width: 20px; height: 1px; background: var(--ink); margin: 5px 0; }
+        .nav-toggle span {
+            display: block; width: 20px; height: 1px; background: var(--ink); margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
         .nav-social { display: flex; align-items: center; gap: 0.85rem; margin-left: 1.25rem; }
         .nav-social-icon { color: var(--soft); transition: color 0.3s ease; display: flex; }
@@ -132,7 +146,12 @@
             position: absolute; inset: 0;
             background: url('/igi-hero.png') center 30% no-repeat;
             background-size: cover;
+            background-attachment: fixed;
             filter: grayscale(65%) sepia(8%) contrast(0.96);
+        }
+
+        @media (max-width: 768px) {
+            .hero-photo { background-attachment: scroll; }
         }
 
         .hero-photo::after {
@@ -167,8 +186,11 @@
             width: 84px; height: 84px;
             margin: 0 auto 1.75rem;
             position: relative;
+            display: flex; align-items: center; justify-content: center;
             border: 2px solid var(--green);
             border-radius: 50%;
+            animation: heroFade 0.9s ease 0.35s forwards, crestGlow 4.5s ease-in-out 1.6s infinite;
+            opacity: 0;
         }
         .crest::before {
             content: '';
@@ -176,15 +198,32 @@
             border: 1px solid var(--foil);
             border-radius: 50%;
         }
-        .crest::after {
-            content: 'IGI';
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-display);
-            font-size: 0.95rem;
-            letter-spacing: 0.08em;
-            color: var(--green);
+        .crest-logo {
+            width: 46px; height: 46px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
         }
+
+        @keyframes heroFade {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes crestGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(176, 138, 46, 0); }
+            50% { box-shadow: 0 0 16px 1px rgba(176, 138, 46, 0.4); }
+        }
+
+        .hero-kicker, .hero h1, .hero-sub, .hero-plaque, .hero-cta {
+            opacity: 0;
+            animation: heroFade 0.9s ease forwards;
+        }
+        .hero-kicker { animation-delay: 0.15s; }
+        .hero h1 { animation-delay: 0.55s; }
+        .hero-sub { animation-delay: 0.75s; }
+        .hero-plaque { animation-delay: 0.95s; }
+        .hero-cta { animation-delay: 1.15s; }
 
         .hero h1 {
             font-family: var(--font-display);
@@ -225,7 +264,9 @@
             text-transform: uppercase;
             color: var(--foil);
             text-decoration: none;
+            transition: letter-spacing 0.3s ease, color 0.3s ease;
         }
+        .hero-cta:hover { color: var(--ink); letter-spacing: 0.22em; }
 
         /* ═══════ SECTIONS ═══════ */
         section { padding: 5.5rem 2rem; }
@@ -251,12 +292,14 @@
         }
 
         .section-divider {
-            width: 44px; height: 3px;
+            width: 0; height: 3px;
             border-top: 1px solid var(--foil);
             border-bottom: 1px solid var(--foil);
             margin-bottom: 2rem;
+            transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s, opacity 0.7s ease, transform 0.7s ease;
         }
 
+        .section-divider.visible { width: 44px; }
         .section-divider.center { margin-left: auto; margin-right: auto; }
 
         /* ═══════ MISSION ═══════ */
@@ -287,7 +330,7 @@
             padding: 2.25rem 1.85rem 1.9rem;
             background: var(--panel);
             border: 1px solid var(--rule);
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .charter-card::before, .charter-card::after {
             content: '';
@@ -297,7 +340,7 @@
         .charter-card::before { top: 0.5rem; }
         .charter-card::after { bottom: 0.5rem; }
 
-        .charter-card:hover { border-color: var(--foil); transform: translateY(-2px); }
+        .charter-card:hover { border-color: var(--foil); transform: translateY(-4px); box-shadow: 0 14px 30px rgba(29,28,23,0.08); }
 
         .charter-num {
             font-family: var(--font-display);
@@ -359,7 +402,7 @@
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
-        .notice-link:hover { background: var(--foil); color: var(--panel); }
+        .notice-link:hover { background: var(--foil); color: var(--panel); transform: translateY(-2px); }
 
         /* ═══════ DISTINGUISHED GUESTS (SPEAKERS) ═══════ */
         .guests-grid {
@@ -381,9 +424,9 @@
             outline: 1px solid var(--foil);
             outline-offset: 4px;
             filter: grayscale(45%);
-            transition: filter 0.4s ease;
+            transition: filter 0.4s ease, transform 0.4s ease;
         }
-        .guest-photo:hover, .team-photo:hover { filter: grayscale(0%); }
+        .guest-photo:hover, .team-photo:hover { filter: grayscale(0%); transform: scale(1.05); }
 
         .team-placeholder {
             display: flex; align-items: center; justify-content: center;
@@ -419,9 +462,9 @@
             border: 1px solid var(--rule);
             background: var(--panel);
             overflow: hidden;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .pitch-card:hover { border-color: var(--foil); }
+        .pitch-card:hover { border-color: var(--foil); transform: translateY(-4px); box-shadow: 0 14px 30px rgba(29,28,23,0.08); }
 
         .pitch-header {
             display: flex;
@@ -457,7 +500,7 @@
             border-top: 1px solid var(--rule);
             transition: all 0.3s ease;
         }
-        .pitch-download:hover { background: var(--foil-soft); }
+        .pitch-download:hover { background: var(--foil-soft); letter-spacing: 0.16em; }
 
         @media (max-width: 768px) {
             .pitches-grid { grid-template-columns: 1fr; }
@@ -470,7 +513,11 @@
 
         .alumni-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
 
-        .alumni-tile { position: relative; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid var(--rule); }
+        .alumni-tile {
+            position: relative; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid var(--rule);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .alumni-tile:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(29,28,23,0.1); }
 
         .alumni-tile-front {
             width: 100%; height: 100%;
@@ -526,7 +573,7 @@
             white-space: nowrap;
             transition: all 0.3s ease;
         }
-        .fund-cta-btn:hover { background: var(--foil); color: var(--green-deep); }
+        .fund-cta-btn:hover { background: var(--foil); color: var(--green-deep); transform: translateY(-2px); }
 
         /* ═══════ LEADERSHIP ═══════ */
         #leadership { background: var(--panel); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
@@ -593,7 +640,7 @@
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
-        .join-cta:hover { background: var(--green); color: #FAF9F4; }
+        .join-cta:hover { background: var(--green); color: #FAF9F4; transform: translateY(-2px); box-shadow: 0 10px 26px rgba(31,59,44,0.18); }
 
         /* ═══════ FOOTER ═══════ */
         footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid var(--rule); }
@@ -610,23 +657,43 @@
         .reveal.hidden { opacity: 0; transform: translateY(20px); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        /* Staggered entrance for grid children */
+        .charter-grid > .reveal:nth-child(2), .guests-grid > .reveal:nth-child(2),
+        .pitches-grid > .reveal:nth-child(2), .alumni-logos > .reveal:nth-child(2),
+        .masonry-gallery > .reveal:nth-child(2), .team-grid > .reveal:nth-child(2) { transition-delay: 0.08s; }
+        .charter-grid > .reveal:nth-child(3), .guests-grid > .reveal:nth-child(3),
+        .pitches-grid > .reveal:nth-child(3), .alumni-logos > .reveal:nth-child(3),
+        .masonry-gallery > .reveal:nth-child(3), .team-grid > .reveal:nth-child(3) { transition-delay: 0.16s; }
+        .charter-grid > .reveal:nth-child(4), .guests-grid > .reveal:nth-child(4),
+        .pitches-grid > .reveal:nth-child(4), .alumni-logos > .reveal:nth-child(4),
+        .masonry-gallery > .reveal:nth-child(4), .team-grid > .reveal:nth-child(4) { transition-delay: 0.24s; }
+        .guests-grid > .reveal:nth-child(5), .alumni-logos > .reveal:nth-child(5) { transition-delay: 0.32s; }
+        .guests-grid > .reveal:nth-child(6), .alumni-logos > .reveal:nth-child(6) { transition-delay: 0.4s; }
+        .guests-grid > .reveal:nth-child(7), .alumni-logos > .reveal:nth-child(7) { transition-delay: 0.48s; }
+        .alumni-logos > .reveal:nth-child(8) { transition-delay: 0.56s; }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+            .hero-photo { background-attachment: scroll !important; }
         }
 
         /* ═══════ RESPONSIVE ═══════ */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
                 position: absolute; top: 100%; left: 0; right: 0;
                 background: rgba(241, 239, 231, 0.98);
                 backdrop-filter: blur(14px);
                 flex-direction: column;
-                padding: 2rem;
+                padding: 0 2rem;
                 gap: 1.5rem;
                 border-bottom: 1px solid var(--rule);
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                pointer-events: none;
+                transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
             }
-            .nav-links.open { display: flex; }
+            .nav-links.open { max-height: 480px; opacity: 1; padding: 2rem; pointer-events: auto; }
             .nav-toggle { display: block; }
 
             .charter-grid { grid-template-columns: 1fr; }
@@ -686,9 +753,9 @@
     <!-- ═══════ HERO ═══════ -->
     <section class="hero" id="top">
         <div class="hero-photo"></div>
-        <div class="hero-frame reveal" id="heroFrame">
+        <div class="hero-frame" id="heroFrame">
             <div class="hero-kicker">Reichman University · Arison School of Business</div>
-            <div class="crest" aria-hidden="true"></div>
+            <div class="crest" aria-hidden="true"><img src="/IGI_Logo.png" alt="" class="crest-logo" loading="lazy"></div>
             <h1>Investment Group Israel</h1>
             <p class="hero-sub">A society of students and professionals who believe in the need for a holistic financial education.</p>
             <div class="hero-plaque">Est. 2019 · Herzliya, Israel</div>
@@ -744,12 +811,12 @@
             <div class="section-label reveal">Life at IGI</div>
             <h2 class="section-title reveal">Gallery</h2>
             <div class="section-divider reveal"></div>
-            <div class="masonry-gallery reveal">
-                <div class="masonry-item"><img loading="lazy" src="/gallery-1.png" alt="Stock pitch"><div class="masonry-caption">Student stock pitch presentation</div></div>
-                <div class="masonry-item"><img loading="lazy" src="/gallery-2.png" alt="Speaker session"><div class="masonry-caption">Guest speaker session</div></div>
-                <div class="masonry-item"><img loading="lazy" src="/gallery-3.png" alt="Speaker"><div class="masonry-caption">Industry speaker · Reichman University</div></div>
-                <div class="masonry-item"><img loading="lazy" src="/gallery-4.png" alt="Guest lecture"><div class="masonry-caption">Guest lecture series</div></div>
-                <div class="masonry-item"><img loading="lazy" src="/gallery-5.png" alt="Macro research"><div class="masonry-caption">Macro research presentation</div></div>
+            <div class="masonry-gallery">
+                <div class="masonry-item reveal"><img loading="lazy" src="/gallery-1.png" alt="Stock pitch"><div class="masonry-caption">Student stock pitch presentation</div></div>
+                <div class="masonry-item reveal"><img loading="lazy" src="/gallery-2.png" alt="Speaker session"><div class="masonry-caption">Guest speaker session</div></div>
+                <div class="masonry-item reveal"><img loading="lazy" src="/gallery-3.png" alt="Speaker"><div class="masonry-caption">Industry speaker · Reichman University</div></div>
+                <div class="masonry-item reveal"><img loading="lazy" src="/gallery-4.png" alt="Guest lecture"><div class="masonry-caption">Guest lecture series</div></div>
+                <div class="masonry-item reveal"><img loading="lazy" src="/gallery-5.png" alt="Macro research"><div class="masonry-caption">Macro research presentation</div></div>
             </div>
         </div>
     </section>
@@ -775,44 +842,44 @@
             <h2 class="section-title reveal">Distinguished Guests</h2>
             <div class="section-divider reveal"></div>
 
-            <div class="guests-grid reveal">
-                <div class="guest-card">
+            <div class="guests-grid">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-fischer.png" alt="Seth Fischer" class="guest-photo">
                     <div class="guest-name">Seth Fischer</div>
                     <div class="guest-title">Founder &amp; CIO, Oasis Management · Former PM, Highbridge Capital</div>
                     <a href="https://www.linkedin.com/in/seth-fischer-ba58186a/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-husain.png" alt="Ahmed Husain" class="guest-photo">
                     <div class="guest-name">Ahmed Husain</div>
                     <div class="guest-title">Global Head of Family Offices, Neuberger Berman · Former MD, Goldman Sachs</div>
                     <a href="https://www.linkedin.com/in/ahusain1976/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-shany.png" alt="Gilad Shany" class="guest-photo">
                     <div class="guest-name">Gilad Shany</div>
                     <div class="guest-title">Founder &amp; Managing Partner, ION Crossover Partners · Former VP, Baron Capital</div>
                     <a href="https://www.linkedin.com/in/giladshany/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-slobodkin.png" alt="Tal Slobodkin" class="guest-photo">
                     <div class="guest-name">Tal Slobodkin</div>
                     <div class="guest-title">Managing Partner, StageOne Ventures · Former Goldman Sachs IBD · Talpiot Graduate</div>
                     <a href="https://www.linkedin.com/in/slobodkin/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-siegel.png" alt="David Siegel" class="guest-photo">
                     <div class="guest-name">David Siegel</div>
                     <div class="guest-title">CEO, Israel Tech Mission · Former CEO, Meetup &amp; Investopedia</div>
                     <a href="https://www.linkedin.com/in/davidmsiegel/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-kleinman.png" alt="Judith Kleinman" class="guest-photo">
                     <div class="guest-name">Judith Kleinman</div>
                     <div class="guest-title">OurCrowd · Venture Capital &amp; Israeli Tech Ecosystem</div>
                     <a href="https://www.linkedin.com/in/judith-kleinman-7778376/" target="_blank" class="guest-linkedin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
                 </div>
-                <div class="guest-card">
+                <div class="guest-card reveal">
                     <img loading="lazy" src="/speaker-salomon.png" alt="Alex Salomon" class="guest-photo">
                     <div class="guest-name">Alex Salomon</div>
                     <div class="guest-title">Co-Founder &amp; Managing Director, IGI · Founder, Better Investments SB</div>
@@ -830,8 +897,8 @@
             <div class="section-divider reveal"></div>
             <p class="pitches-intro reveal">Our members develop and present institutional-quality equity research. Below are selected pitches from recent semesters.</p>
 
-            <div class="pitches-grid reveal">
-                <div class="pitch-card">
+            <div class="pitches-grid">
+                <div class="pitch-card reveal">
                     <div class="pitch-header">
                         <div class="pitch-ticker">NU</div>
                         <div class="pitch-meta">
@@ -845,7 +912,7 @@
                     <a href="/pitch-NU.pdf" class="pitch-download" download>Download PDF →</a>
                 </div>
 
-                <div class="pitch-card">
+                <div class="pitch-card reveal">
                     <div class="pitch-header">
                         <div class="pitch-ticker">SOFI</div>
                         <div class="pitch-meta">
@@ -857,7 +924,7 @@
                     <span class="pitch-download" style="opacity:0.45;cursor:default;">Coming soon</span>
                 </div>
 
-                <div class="pitch-card">
+                <div class="pitch-card reveal">
                     <div class="pitch-header">
                         <div class="pitch-ticker">MU</div>
                         <div class="pitch-meta">
@@ -869,7 +936,7 @@
                     <span class="pitch-download" style="opacity:0.45;cursor:default;">Coming soon</span>
                 </div>
 
-                <div class="pitch-card">
+                <div class="pitch-card reveal">
                     <div class="pitch-header">
                         <div class="pitch-ticker">RKLB</div>
                         <div class="pitch-meta">
@@ -892,8 +959,8 @@
             <div class="section-divider reveal"></div>
             <p class="alumni-intro reveal">IGI alumni have gone on to build careers at leading financial institutions across Israel and globally.</p>
 
-            <div class="alumni-logos reveal" id="alumniGrid">
-                <div class="alumni-tile">
+            <div class="alumni-logos" id="alumniGrid">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-jpmorgan.png" alt="J.P. Morgan"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">J.P. Morgan</div>
@@ -901,7 +968,7 @@
                         <div class="alumni-back-role">Investment Banking Associate</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-goldmansachs.png" alt="Goldman Sachs"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Goldman Sachs</div>
@@ -909,7 +976,7 @@
                         <div class="alumni-back-role">Analyst</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-morganstanley.png" alt="Morgan Stanley"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Morgan Stanley</div>
@@ -917,7 +984,7 @@
                         <div class="alumni-back-role">Associate</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-altshulershaham.png" alt="Altshuler Shaham"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Altshuler Shaham</div>
@@ -925,7 +992,7 @@
                         <div class="alumni-back-role">Equity Research Analyst</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-ey.png" alt="EY-Parthenon"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">EY-Parthenon</div>
@@ -933,7 +1000,7 @@
                         <div class="alumni-back-role">Strategy Consultant</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-migdal.png" alt="Migdal Insurance"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Migdal Insurance</div>
@@ -941,7 +1008,7 @@
                         <div class="alumni-back-role">Investment Analyst</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-meitav.png" alt="Meitav"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Meitav</div>
@@ -949,7 +1016,7 @@
                         <div class="alumni-back-role">Portfolio Manager</div>
                     </div>
                 </div>
-                <div class="alumni-tile">
+                <div class="alumni-tile reveal">
                     <div class="alumni-tile-front"><img loading="lazy" src="/logo-deloitte.png" alt="Deloitte"></div>
                     <div class="alumni-tile-info">
                         <div class="alumni-back-company">Deloitte</div>
@@ -996,8 +1063,8 @@
 
             <div class="board-label reveal">Board</div>
 
-            <div class="team-grid reveal">
-                <div class="team-member">
+            <div class="team-grid">
+                <div class="team-member reveal">
                     <div class="team-placeholder">IH</div>
                     <div class="team-name">Illy Hagege</div>
                     <div class="team-role">President</div>
@@ -1041,8 +1108,8 @@
 
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
-        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); navToggle.classList.toggle('open'); });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.classList.remove('open'); }));
 
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => el.classList.add('hidden'));
