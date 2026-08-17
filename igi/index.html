@@ -183,23 +183,14 @@
         }
 
         .crest {
-            width: 84px; height: 84px;
             margin: 0 auto 1.75rem;
             position: relative;
             display: flex; align-items: center; justify-content: center;
-            border: 2px solid var(--green);
-            border-radius: 50%;
-            animation: heroFade 0.9s ease 0.35s forwards, crestGlow 4.5s ease-in-out 1.6s infinite;
+            animation: heroFade 0.9s ease 0.35s forwards;
             opacity: 0;
         }
-        .crest::before {
-            content: '';
-            position: absolute; inset: 6px;
-            border: 1px solid var(--foil);
-            border-radius: 50%;
-        }
         .crest-logo {
-            width: 46px; height: 46px;
+            width: 230px; height: 230px;
             object-fit: contain;
             position: relative;
             z-index: 1;
@@ -208,11 +199,6 @@
         @keyframes heroFade {
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes crestGlow {
-            0%, 100% { box-shadow: 0 0 0 rgba(176, 138, 46, 0); }
-            50% { box-shadow: 0 0 16px 1px rgba(176, 138, 46, 0.4); }
         }
 
         .hero-kicker, .hero h1, .hero-sub, .hero-plaque, .hero-cta {
